@@ -5,6 +5,7 @@ import Signup from "./pages/signup"
 import './App.css'
 import Login from "./pages/login"
 import Navbar from './components/navbar'
+import Dashboard from './pages/dashboard'
 
 export default function App(){
   return (
@@ -13,7 +14,7 @@ export default function App(){
         <Navbar/>
         <div className="main">
           <Routes>
-            <Route path='/' element={<div>Dashboard</div>} />
+            <Route path='/' element={<Dashboard/>} />
             <Route path='signup' element={<Signup/>} />
             <Route path='login' element={<Login/>}/>
           </Routes>
