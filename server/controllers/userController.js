@@ -1,42 +1,60 @@
-const users = [
-    {id:0, username: 'Kevin@234', email: 'kevin123@abc.com', phone:393242332},
-    {id:1, username: 'shaun@823', email: 'shaun123@abc.com', phone:928332332},
-    {id:2, username: 'Luke@1211', email: 'luke123@abc.com', phone:543432332},
-    {id:3, username: 'Michael@23', email: 'michael123@abc.com', phone:112112332},
-    {id:4, username: 'Mathews@923', email: 'mathews123@abc.com', phone:783432332}
-]
+const User = require('../models/users')
 
-function getAllUsers(req, res, next){
-    res.json(users)
+async function getAllUsers(req, res, next){
+    try{
+        const users = await User.find()
+        return res.status(200).json(users)
+    }catch(err){
+        return res.status(400).json({error: err.message})
+    }
 }
 
-function getUser(req,res,next){
-    const id = parseInt(req.params.id)
-    console.log(id)
-    const user = users.find(user => user.id === id)
-    res.json(user)
+async function getUser(req,res,next){
+    try{
+        const id = req.params.id
+        const user = await User.findById(id)
+        if(!user){
+            return res.status(404).json({error: 'cannot find user'})
+        }
+        return res.status(200).json(user)
+    }catch(err){
+        return res.status(400).json({error: err.message})
+    }
 }
 
-function postUser(req,res,next){
-    const {username, email, phone} = req.body
-    const user = {username,email,phone, id:23}
-    users.push(user)
-    const arr = users
-    res.json(arr)
+async function postUser(req,res,next){
+   try{
+        const user = await User.create({...req.body})
+        return res.status(200).json(user)
+   }catch(err){
+        return res.status(400).json({error: err.message})
+   }
 }
 
-function deleteUser(req,res,next){
-    const id = req.params.id
-    const arr = users.filter(user => user.id !== parseInt(id))
-    res.json(arr)
+async function deleteUser(req,res,next){
+   try{
+        const id = req.params.id
+        const user = await User.findByIdAndDelete(id)
+        if(!user){
+            return res.status(404).json({error: "no user found"})
+        }
+        return res.redirect('/')
+   }catch(err){
+        return res.status(400).json({error: err.message})
+   }
 }
 
-function editUser(req,res,next){
-    const id = req.params.id
-    const arr = users.map(user => {
-        return user.id === parseInt(id) ? {...req.body} : user
-    })
-    res.json(arr)
+async function editUser(req,res,next){
+    try{
+        const id = req.params.id
+        const user = await User.findByIdAndUpdate(id, {...req.body})
+        if(!user){
+            return res.status(404).jso({error: 'no user found'})
+        }
+        return res.redirect('/')
+    }catch(err){
+        return res.status(400).json({error: err.message})
+    }
 }
 
 module.exports = {getAllUsers, getUser, postUser, deleteUser, editUser}
