@@ -9,14 +9,81 @@ var debug = require('debug')('server:server');
 var http = require('http');
 const mongoose = require('mongoose')
 
-const DB_URI = process.env.NODE_ENV === 'development' ? process.env.LOCAL_URI : process.env.DB_URI
+const {ApolloServer} = require('@apollo/server')
+const {startStandaloneServer} = require('@apollo/server/standalone')
 
-mongoose.connect(DB_URI)
-const db = mongoose.connection
+const typeDefs = `#graphql
+  type Article{
+    title: String
+    snippet: String!
+    body: String
+  }
+  
+  type Comment{
+    title: String
+    body: String
+    author: Author
+  }
 
-db.on('error', (err) => {
-  console.log(err.message)
+  type Author{
+    name: String
+    comments: [Comment]
+  }
+
+  type Query{
+    articles: [Article]
+    comments:[Comment]
+    authors:[Author]
+  }
+`
+const articles = [
+  {
+    title: 'Lorem ipsum',
+    snippet:'Lorem ipsum dolor sit amet',
+    body: 'lorem ipsum dolor sit amet consectur esfwe, rwer,sarter wickwed'
+  },
+  {
+    title: 'Lorem ipsum',
+    snippet: 'Lorem ipsum dolor sit amet',
+    body: 'lorem ipsum dolor sit amet consectur esfwe, rwer,sarter wickwed'
+  },
+  {
+    title: 'Lorem ipsum',
+    snippet: 'Lorem ipsum dolor sit amet',
+    body: 'lorem ipsum dolor sit amet consectur esfwe, rwer,sarter wickwed'
+  }
+]
+
+const resolvers = {
+  Query:{
+    articles: () => articles,
+  },
+}
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  introspection: true
 })
+
+// const DB_URI = process.env.NODE_ENV === 'development' ? process.env.LOCAL_URI : process.env.DB_URI
+
+// mongoose.connect(DB_URI)
+// const db = mongoose.connection
+
+// db.on('error', (err) => {
+//   console.log(err.message)
+// })
+
+async function listenRequest(){
+  const {url} = await startStandaloneServer(server, {
+    listen: {port: 4000},
+  })
+
+  console.log('server ready at', url)
+}
+
+listenRequest()
 
 /**
  * Get port from environment and store in Express.
@@ -29,19 +96,19 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+// var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-db.on('open', () => {
-  server.listen(port);
-  console.log('db connected')
-})
+// db.on('open', () => {
+//   server.listen(port);
+//   console.log('db connected')
+// })
 
-server.on('error', onError);
-server.on('listening', onListening);
+// server.on('error', onError);
+// server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
