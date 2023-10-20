@@ -35,6 +35,10 @@ const typeDefs = `#graphql
     comments:[Comment]
     authors:[Author]
   }
+
+  type Mutation{
+    addArticle(title: String, snippet: String, body:String): Article
+  }
 `
 const articles = [
   {
