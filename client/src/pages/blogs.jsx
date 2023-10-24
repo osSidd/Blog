@@ -1,20 +1,22 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import BlogCard from "../components/blogs/blogCard";
-
-import data from '../data/data'
+import useBlogsFetch from "../hooks/useBlogsFetch";
 
 export default function Blogs(){
 
+    const {blogs} = useBlogsFetch()
+
     return (
-        <Box mx={4}>
-            <Box py={12} mx={4}>
+        <Box color='#fefefe'>
+            <Box w='4xl' mx='auto'>
+                <Heading>My Blog</Heading>
+            </Box>
+            <Box mt={14}>
                 {
-                    data.map(blog => (
+                    blogs?.map(blog => (
                         <BlogCard
-                            image={blog.image}
-                            title={blog.title}
-                            snippet={blog.snippet}
-                            key={blog.id}
+                            blog={blog}
+                            key={blog._id}
                         />
                     ))
                 }   
