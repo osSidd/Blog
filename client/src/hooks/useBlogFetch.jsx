@@ -1,9 +1,11 @@
 import {useEffect} from 'react' 
 import useBlogContext from './useBlogContext'
+import { useNavigate } from 'react-router-dom'
 
 export default function useBlogFetch(id){
 
     const {state, dispatch} = useBlogContext()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const abortController = new AbortController()
@@ -37,5 +39,24 @@ export default function useBlogFetch(id){
         }
     }, [])
 
-    return {blog: state.blog}
+    async function deleteBlog(){
+        try{
+            const response = await fetch(`http://localhost:3000/api/blogs/${id}`, {
+                method: 'DELETE'
+            })
+    
+            if(response.ok){
+                const data = await response.json()
+                console.log('blog deleted')
+            }
+        }catch(err){
+            console.log(err.message)
+        }
+    }
+
+    function editBlog(){
+        navigate(`/blogs/${id}/edit`)
+    }
+
+    return {blog: state.blog, deleteBlog, editBlog}
 }

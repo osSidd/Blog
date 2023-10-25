@@ -30,7 +30,7 @@ export default function BlogCard({blog}){
             </CardBody>
 
             <CardFooter>
-                <Button color='blue.300' variant='unstyled' onClick={navigateToBlog}>
+                <Button colorScheme='yellow' onClick={navigateToBlog}>
                     Read More
                 </Button>
             </CardFooter>
