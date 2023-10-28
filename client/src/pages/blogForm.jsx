@@ -37,7 +37,7 @@ export default function BlogForm(){
                     <FormLabel>Body</FormLabel>
                     <Textarea ref={messageRef} rows={8} resize='none' placeholder="Enter blog body" />
                 </FormControl>        
-                <Button type="submit" colorScheme='yellow' px={12} mt={8}>{ id ? 'Edit Blog' : 'Add Blog'}</Button>    
+                <Button type="submit" colorScheme='yellow' px={12} mt={8}>{ id ? 'Update Blog' : 'Add Blog'}</Button>    
             </form>  
         </Box>
     )

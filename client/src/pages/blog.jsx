@@ -6,6 +6,7 @@ import BackToBlogsBtn from '../components/backBtn';
 import {DeleteIcon, EditIcon} from '@chakra-ui/icons'
 
 import useBlogFetch from '../hooks/useBlogFetch'
+import formatDate from '../utils/formatDate';
 
 export default function Blog(){
 
@@ -22,7 +23,7 @@ export default function Blog(){
             <Box mt={12}>
                 <Heading as='h1' size='4xl'>{blog.title}</Heading>
                 <Box display='flex' alignItems='center' mt={8} mb={4} fontSize={18}>
-                    <Text mr={4}>Created on {new Date(blog.createdAt).toLocaleDateString()}</Text>
+                    <Text mr={4}>Created on {formatDate(blog.createdAt)}</Text>
                     <Text>By - Author's name</Text>
                 </Box>
                 <Divider color='GrayText'/>

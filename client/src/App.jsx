@@ -11,6 +11,8 @@ const Blog = lazy(() => import('./pages/blog'))
 const BlogForm = lazy(() => import('./pages/blogForm'))
 const ErrorPage = lazy(() => import('./error/errorPage'))
 
+// add validations on both sides
+
 export default function App(){
   return(
     <Box maxW='100vw' minH='100vh' py={12} bg='#133'>

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import useBlogContext from "./useBlogContext";
+import { useNavigate } from "react-router-dom";
 
 export default function useBlogForm(id){
     
@@ -11,6 +12,7 @@ export default function useBlogForm(id){
     const {state} = useBlogContext()
 
     const messageRef = useRef('')
+    const navigate = useNavigate()
 
     function handleChange(e){
         const {name, value} = e.target
@@ -35,6 +37,7 @@ export default function useBlogForm(id){
     
             if(response.ok){
                 const data = await response.json()
+                navigate('/')
             }
         }catch(err){
             console.log(err.message)

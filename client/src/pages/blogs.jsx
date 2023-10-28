@@ -14,6 +14,8 @@ export default function Blogs(){
         navigate('/blogs/create')
     }
 
+    console.log(blogs)
+
     return (
         <Box color='#fefefe'>
             <Box w={{base:'90%', md:'4xl'}} display='flex' alignItems='center' justifyContent='space-between' mx='auto'>
@@ -31,12 +33,17 @@ export default function Blogs(){
             </Box>
             <Box mt={14}>
                 {
+                    blogs.length ? 
                     blogs?.map(blog => (
                         <BlogCard
                             blog={blog}
                             key={blog._id}
                         />
                     ))
+                    :
+                    <Box color='white' textAlign='center'>
+                        <Heading>No Blogs, add some</Heading>
+                    </Box>
                 }   
             </Box>
         </Box>

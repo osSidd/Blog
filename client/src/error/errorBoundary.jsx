@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 
 class ErrorBoundary extends Component{
     constructor(props){
@@ -25,14 +26,15 @@ class ErrorBoundary extends Component{
 
 function FallbackComponent({state}){
     return (
-        <div>
-            <h2>Something went wrong</h2>
+        <Box color='white' w='2xl' m='auto'>
+            <Heading>Something went wrong</Heading>
             <details>
                 {state.error && state.error.toString()}
                 <br />
+                <br />
                 {state.errorInfo && state.errorInfo.componentStack}
             </details>
-        </div>
+        </Box>
     )
 }
 

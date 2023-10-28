@@ -47,7 +47,7 @@ export default function useBlogFetch(id){
     
             if(response.ok){
                 const data = await response.json()
-                console.log('blog deleted')
+                navigate('/')
             }
         }catch(err){
             console.log(err.message)
