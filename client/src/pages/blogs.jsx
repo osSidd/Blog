@@ -10,11 +10,9 @@ export default function Blogs(){
 
     const navigate = useNavigate()
 
-    function handleNavigation(){
-        navigate('/blogs/create')
+    function handleNavigation(path){
+        navigate(path)
     }
-
-    console.log(blogs)
 
     return (
         <Box color='#fefefe'>
@@ -25,9 +23,15 @@ export default function Blogs(){
                     variant='outline' 
                     textTransform='capitalize' 
                     fontSize={18}
-                    onClick={handleNavigation}
+                    onClick={e =>  handleNavigation('/blogs/create')}
                 >
                     add blog
+                </Button>
+                <Button colorScheme='facebook' onClick={e => handleNavigation('/users/signup')}>
+                    signup
+                </Button>
+                <Button colorScheme='facebook' onClick={e => handleNavigation('/users/login')}>
+                    login
                 </Button>
                 {/* <AddIcon boxSize={14} cursor='pointer' onClick={handleNavigation} bg='yellow' borderRadius='50%' p={4} color='black'/> */}
             </Box>

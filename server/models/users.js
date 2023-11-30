@@ -19,8 +19,11 @@ const UserSchema = new Schema({
         type:String,
         required:true,
     },
+    confirmPassword:{
+        type: String,
+        required: true,
+    },
     // image:{}
-
 })
 
 module.exports = mongoose.model('user', UserSchema )

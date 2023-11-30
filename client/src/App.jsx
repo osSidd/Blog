@@ -9,6 +9,7 @@ import ErrorBoundary from "./error/errorBoundary"
 const Blogs = lazy(() => import('./pages/blogs'))
 const Blog = lazy(() => import('./pages/blog'))
 const BlogForm = lazy(() => import('./pages/blogForm'))
+const Signup = lazy(() => import('./pages/signup'))
 const ErrorPage = lazy(() => import('./error/errorPage'))
 
 // add validations on both sides
@@ -24,6 +25,7 @@ export default function App(){
               <Route path="/blogs/:id" element={<Blog/>}/>
               <Route path="/blogs/:id/edit" element={<BlogForm/>}/>
               <Route path="/blogs/create" element={<BlogForm/>}/>
+              <Route path="/users/signup" element={<Signup/>}/>
               <Route path="*" element={<ErrorPage/>}/>
             </Routes>
           </Suspense>

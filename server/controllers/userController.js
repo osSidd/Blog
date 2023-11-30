@@ -31,10 +31,10 @@ async function getUser(req,res,next){
 }
 
 //create a new user
-async function postUser(req,res,next){
+async function userSignup(req,res,next){
    try{
         const user = await User.create({...req.body})
-        return res.status(200).json(user)
+        return res.status(201).json(user)
    }catch(err){
         return res.status(400).json({error: err.message})
    }
@@ -76,4 +76,4 @@ async function editUser(req,res,next){
     }
 }
 
-module.exports = {getAllUsers, getUser, postUser, deleteUser, editUser}
+module.exports = {getAllUsers, getUser, userSignup, deleteUser, editUser}

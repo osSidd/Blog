@@ -21,7 +21,10 @@ export default function BlogForm(){
                         name="title"
                         value={formData.title}
                         onChange={handleChange}
-                        placeholder="Enter blog title" 
+                        placeholder="Enter blog title"
+                        required
+                        minLength="40"
+                        maxLength="60"
                     />
                 </FormControl>      
                 <FormControl mt={8}>
@@ -30,12 +33,19 @@ export default function BlogForm(){
                         name="snippet"
                         value={formData.snippet}
                         onChange={handleChange} 
-                        placeholder="Enter blog snippet" 
+                        placeholder="Enter blog snippet"
+                        required 
                     />
                 </FormControl>
                 <FormControl mt={8}>
                     <FormLabel>Body</FormLabel>
-                    <Textarea ref={messageRef} rows={8} resize='none' placeholder="Enter blog body" />
+                    <Textarea 
+                        ref={messageRef} 
+                        rows={8} 
+                        resize='none' 
+                        placeholder="Enter blog body"
+                        required
+                    />
                 </FormControl>        
                 <Button type="submit" colorScheme='yellow' px={12} mt={8}>{ id ? 'Update Blog' : 'Add Blog'}</Button>    
             </form>  

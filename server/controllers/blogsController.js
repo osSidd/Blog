@@ -34,7 +34,7 @@ const postNewBlog = async (req,res) => {
     try{
         const blog = new Blog({...req.body});
         const newBlog = await blog.save();
-        return res.status(200).json(newBlog);
+        return res.status(201).json(newBlog);
     }catch(err){
         return res.status(400).json({error: err.message})
     }
