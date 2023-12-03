@@ -10,7 +10,7 @@ export default function Signup(){
     const {formData, handleChange, signupUser} = useSignup()
 
     return(
-        <Box color='#fefefe'>
+        <Box>
             <Box 
                 w={{base: '90%', md:'4xl'}} 
                 mx='auto' 
@@ -18,6 +18,7 @@ export default function Signup(){
                 flexDir='column' 
                 alignItems='center' 
                 justifyContent='center'
+                color='#fefefe'
             >
                 
                 <Box alignSelf='flex-start'><BackToBlogsBtn/></Box>

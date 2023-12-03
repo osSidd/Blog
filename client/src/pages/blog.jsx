@@ -6,6 +6,7 @@ import BackToBlogsBtn from '../components/backBtn';
 import {DeleteIcon, EditIcon} from '@chakra-ui/icons'
 
 import useBlogFetch from '../hooks/useBlogFetch'
+import useUserContext from '../hooks/useUserContext'
 import formatDate from '../utils/formatDate';
 
 export default function Blog(){
@@ -14,6 +15,7 @@ export default function Blog(){
     const id = params.id
     
     const {blog, deleteBlog, editBlog} = useBlogFetch(id)
+    const {user} = useUserContext()
 
     return(
         <Box color='whiteAlpha.800' w={{base:'90%', md:'4xl'}} mx='auto'>
@@ -30,10 +32,13 @@ export default function Blog(){
                 <Box mt={4}>
                     <Text>{blog.body}</Text>
                 </Box>
-                <Box display='flex' alignItems='center' mt={12}>
-                    <DeleteIcon boxSize={8} mr={8} color='red.300' cursor='pointer' onClick={deleteBlog}/>
-                    <EditIcon boxSize={8} color='blue.300' cursor='pointer' onClick={editBlog}/>
-                </Box>
+                {
+                    user && 
+                    <Box display='flex' alignItems='center' mt={12}>
+                        <DeleteIcon boxSize={8} mr={8} color='red.300' cursor='pointer' onClick={deleteBlog}/>
+                        <EditIcon boxSize={8} color='blue.300' cursor='pointer' onClick={editBlog}/>
+                    </Box>
+                }
             </Box>
         </Box>
     )

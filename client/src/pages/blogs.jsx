@@ -1,40 +1,14 @@
-import { Box, Button, Heading } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
+
 import BlogCard from "../components/blogs/blogCard";
 import useBlogsFetch from "../hooks/useBlogsFetch";
-import {AddIcon} from '@chakra-ui/icons'
-import { useNavigate } from "react-router-dom";
 
 export default function Blogs(){
 
-    const {blogs} = useBlogsFetch()
-
-    const navigate = useNavigate()
-
-    function handleNavigation(path){
-        navigate(path)
-    }
+    const {blogs} = useBlogsFetch()  
 
     return (
-        <Box color='#fefefe'>
-            <Box w={{base:'90%', md:'4xl'}} display='flex' alignItems='center' justifyContent='space-between' mx='auto'>
-                <Heading as='h1' size='4xl'>My Blog</Heading>
-                <Button 
-                    colorScheme='yellow'
-                    variant='outline' 
-                    textTransform='capitalize' 
-                    fontSize={18}
-                    onClick={e =>  handleNavigation('/blogs/create')}
-                >
-                    add blog
-                </Button>
-                <Button colorScheme='facebook' onClick={e => handleNavigation('/users/signup')}>
-                    signup
-                </Button>
-                <Button colorScheme='facebook' onClick={e => handleNavigation('/users/login')}>
-                    login
-                </Button>
-                {/* <AddIcon boxSize={14} cursor='pointer' onClick={handleNavigation} bg='yellow' borderRadius='50%' p={4} color='black'/> */}
-            </Box>
+        <Box>
             <Box mt={14}>
                 {
                     blogs.length ? 

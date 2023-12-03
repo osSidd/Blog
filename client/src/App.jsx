@@ -5,19 +5,21 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 import './App.css'
 import ErrorBoundary from "./error/errorBoundary"
+import Navbar from "./components/navbar"
 
 const Blogs = lazy(() => import('./pages/blogs'))
 const Blog = lazy(() => import('./pages/blog'))
 const BlogForm = lazy(() => import('./pages/blogForm'))
 const Signup = lazy(() => import('./pages/signup'))
+const Login = lazy(() => import('./pages/login'))
 const ErrorPage = lazy(() => import('./error/errorPage'))
 
-// add validations on both sides
 
 export default function App(){
   return(
     <Box maxW='100vw' minH='100vh' py={12} bg='#133'>
       <BrowserRouter>
+        <Navbar/>
         <ErrorBoundary>
           <Suspense fallback={<div>Loading ...</div>}>
             <Routes>
@@ -26,13 +28,12 @@ export default function App(){
               <Route path="/blogs/:id/edit" element={<BlogForm/>}/>
               <Route path="/blogs/create" element={<BlogForm/>}/>
               <Route path="/users/signup" element={<Signup/>}/>
+              <Route path="/users/login" element={<Login/>}/>
               <Route path="*" element={<ErrorPage/>}/>
             </Routes>
           </Suspense>
         </ErrorBoundary>
       </BrowserRouter>
-       
-    </Box >
-      
+    </Box>
   )
 }

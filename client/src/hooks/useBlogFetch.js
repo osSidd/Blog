@@ -42,7 +42,8 @@ export default function useBlogFetch(id){
     async function deleteBlog(){
         try{
             const response = await fetch(`http://localhost:3000/api/blogs/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                credentials: "include",
             })
     
             if(response.ok){

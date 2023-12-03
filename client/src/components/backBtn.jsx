@@ -17,6 +17,7 @@ export default function BackToBlogsBtn(){
                 textTransform='capitalize' 
                 colorScheme='yellow'
                 size='sm'
+                mt={16}
             >
                 blogs
             </Button>

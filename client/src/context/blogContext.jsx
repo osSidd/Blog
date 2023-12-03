@@ -23,7 +23,7 @@ export default function BlogContextProvider({children}){
 
     const [state, dispatch] = useReducer(reducer, {
         blogs:[],
-        blog: {}
+        blog: {},
     })
 
     return(

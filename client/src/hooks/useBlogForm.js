@@ -28,6 +28,7 @@ export default function useBlogForm(id){
         const url = id ? `http://localhost:3000/api/blogs/${id}` : 'http://localhost:3000/api/blogs'
         try{
             const response = await fetch(url, {
+                credentials: "include",
                 headers:{
                     "Content-Type": "application/json"
                 },
