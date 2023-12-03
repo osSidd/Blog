@@ -40,7 +40,29 @@ async function userLogin(req,res,next){
     }
 }
 
-//create a new user
+//user log out
+async function userLogout(req, res, next){
+    try{
+        if(!req.cookies){
+            return res.status(401).json({error: 'user not logged in'})
+        }
+ 
+        const sessionToken = req.cookies['session_token']
+        if(!sessionToken){
+            res.status(401).json({error: 'user not logged in'})
+        }
+
+        await Session.deleteOne({token: sessionToken})
+
+        res.cookie('session_token', '', {expires: new Date()})
+        return res.status(200).json({user: '', expireTime: new Date()})
+    
+    }catch(err){
+        res.status(400).json({error: err.message})
+    }
+}
+
+//new user sign up
 async function userSignup(req,res,next){
    try{
         const user = await User.create({...req.body})
@@ -86,4 +108,4 @@ async function editUser(req,res,next){
     }
 }
 
-module.exports = {getAllUsers, userLogin, userSignup, deleteUser, editUser}
+module.exports = {getAllUsers, userLogin, userLogout, userSignup, deleteUser, editUser}

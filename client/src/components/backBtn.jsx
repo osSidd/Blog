@@ -12,14 +12,14 @@ export default function BackToBlogsBtn(){
 
     return (
         <Button 
-                leftIcon={<ArrowLeftIcon boxSize={3}/>} 
-                onClick={navigateTo} 
-                textTransform='capitalize' 
-                colorScheme='yellow'
-                size='sm'
-                mt={16}
-            >
-                blogs
-            </Button>
+            leftIcon={<ArrowLeftIcon boxSize={3}/>} 
+            onClick={navigateTo} 
+            textTransform='capitalize' 
+            colorScheme='yellow'
+            size='sm'
+            mt={16}
+        >
+            blogs
+        </Button>
     )
 }

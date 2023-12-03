@@ -15,6 +15,7 @@ function reducer(state, action){
                 user: action.payload.user,
             }
         case 'USER_LOG_OUT':
+            sessionStorage.clear('user')
             return {
                 user: ''
             }

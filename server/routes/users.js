@@ -4,6 +4,7 @@ var router = express.Router();
 const {
   getAllUsers,
   userLogin,
+  userLogout,
   userSignup,
   deleteUser,
   editUser
@@ -20,6 +21,9 @@ router.delete('/:id', deleteUser);
 
 //for user login
 router.post('/login', userLogin)
+
+//user log out
+router.get('/logout', userLogout)
 
 //for user signup
 router.post('/signup', userSignup)
