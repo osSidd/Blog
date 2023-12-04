@@ -18,14 +18,13 @@ export default function Signup(){
                 flexDir='column' 
                 alignItems='center' 
                 justifyContent='center'
-                color='#fefefe'
             >
                 
                 <Box alignSelf='flex-start'><BackToBlogsBtn/></Box>
                 
-                <form style={{width: '75%'}} onSubmit={signupUser}>
+                <form style={{width: '75%', color:'GrayText'}} onSubmit={signupUser}>
                 
-                    <Heading textAlign='center' as='h1'>Signup</Heading>    
+                    <Heading textAlign='center' as='h2' fontSize='2xl'>Signup</Heading>    
                 
                     <FormControlElement
                         label='Full Name'
@@ -67,7 +66,7 @@ export default function Signup(){
                     />
                     <Button 
                         mx='auto' 
-                        colorScheme="yellow"
+                        colorScheme='blue'
                         px={12}
                         display='block' 
                         mt={8}
@@ -82,7 +81,7 @@ export default function Signup(){
                         fontSize='sm'
                     >
                         Already registered? &nbsp;
-                        <Link to='/users/login' style={{color:'white'}}>
+                        <Link to='/users/login' style={{color: 'blue'}}>
                             Login
                         </Link>
                     </Box>

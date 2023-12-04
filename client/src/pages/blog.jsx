@@ -1,8 +1,7 @@
 import {useParams} from 'react-router-dom'
 
-import { Box, Button, Divider, Heading, Icon, Text, baseTheme } from "@chakra-ui/react";
+import { Box, Button, Heading, Text, } from "@chakra-ui/react";
 import BackToBlogsBtn from '../components/backBtn';
-// import {ArrowLeftIcon} from '@chakra-ui/icons'
 import {DeleteIcon, EditIcon} from '@chakra-ui/icons'
 
 import useBlogFetch from '../hooks/useBlogFetch'
@@ -18,7 +17,7 @@ export default function Blog(){
     const {user} = useUserContext()
 
     return(
-        <Box color='whiteAlpha.800' w={{base:'90%', md:'4xl'}} mx='auto'>
+        <Box w={{base:'90%', md:'4xl'}} mx='auto'>
             
             <BackToBlogsBtn/>
             
@@ -26,9 +25,16 @@ export default function Blog(){
                 <Heading as='h1' size='4xl'>{blog.title}</Heading>
                 <Box display='flex' alignItems='center' mt={8} mb={4} fontSize={18}>
                     <Text mr={4}>Created on {formatDate(blog.createdAt)}</Text>
-                    <Text>By - Author's name</Text>
+                    <Text>By - Author&apos; s name</Text>
                 </Box>
-                <Divider color='GrayText'/>
+                <Box>
+                    {
+                        blog.keyword?.map((item, index) => (
+                            <Button type='button' mr={3} colorScheme='teal' color='white' key={index}>{item}</Button>
+                        )) 
+                    }
+                </Box>
+                <Box mt={2} h={0.25} bg='blackAlpha.400' />
                 <Box mt={4}>
                     <Text>{blog.body}</Text>
                 </Box>

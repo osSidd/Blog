@@ -18,7 +18,6 @@ export default function BlogCard({blog}){
             maxW={{base:'100%', md:"4xl"}}
             mb={8}
             variant='outline'
-            color='white'
             mx='auto'
         >
             <CardHeader>
@@ -31,7 +30,7 @@ export default function BlogCard({blog}){
             </CardBody>
 
             <CardFooter>
-                <Button colorScheme='yellow' onClick={navigateToBlog}>
+                <Button colorScheme='purple' onClick={navigateToBlog}>
                     Read More
                 </Button>
             </CardFooter>

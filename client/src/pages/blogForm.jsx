@@ -8,10 +8,10 @@ export default function BlogForm(){
     const params = useParams()
     const id = params.id
 
-    const {formData, messageRef, handleChange, handleSubmit} = useBlogForm(id)
+    const {formData, messageRef, keywordRef, handleChange, handleSubmit} = useBlogForm(id)
     
     return (
-        <Box color='white' w={{base:'90%', md:'4xl'}} mx='auto'>
+        <Box w={{base:'90%', md:'4xl'}} mx='auto'>
             <BackToBlogsBtn/>
             <form style={{marginTop:'32px'}} onSubmit={handleSubmit}>
                 <Heading as='h1' size='4xl'>Create a new blog</Heading>
@@ -38,6 +38,15 @@ export default function BlogForm(){
                     />
                 </FormControl>
                 <FormControl mt={8}>
+                    <FormLabel>Keywords</FormLabel>
+                    <Input
+                        name="keywords"
+                        ref={keywordRef}
+                        placeholder="Enter keywords (comma ',' separated values)"
+                        required 
+                    />
+                </FormControl>
+                <FormControl mt={8}>
                     <FormLabel>Body</FormLabel>
                     <Textarea 
                         ref={messageRef} 
@@ -47,7 +56,7 @@ export default function BlogForm(){
                         required
                     />
                 </FormControl>        
-                <Button type="submit" colorScheme='yellow' px={12} mt={8}>{ id ? 'Update Blog' : 'Add Blog'}</Button>    
+                <Button type="submit" colorScheme='teal' px={12} mt={8}>{ id ? 'Update Blog' : 'Add Blog'}</Button>    
             </form>  
         </Box>
     )

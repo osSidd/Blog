@@ -18,13 +18,12 @@ export default function Login(){
                 flexDir='column' 
                 alignItems='center' 
                 justifyContent='center'
-                color='#fefefe'
             >
                 
             <Box alignSelf='flex-start'><BackToBlogsBtn/></Box>
                             
-            <form style={{width: '75%'}} onSubmit={loginUser}>
-                <Heading as='h1' textAlign='center'>Login</Heading>
+            <form style={{width: '75%', color:"GrayText"}} onSubmit={loginUser}>
+                <Heading as='h2' fontSize='2xl' textAlign='center'>Login</Heading>
                 <FormControlElement
                     label='Email'
                     name='email'
@@ -43,7 +42,7 @@ export default function Login(){
                 />
                 <Button 
                     mx='auto' 
-                    colorScheme="yellow"
+                    colorScheme='blue'
                     px={12}
                     display='block' 
                     mt={8}
@@ -58,7 +57,7 @@ export default function Login(){
                     fontSize='sm'
                 >
                     Not registered yet? &nbsp;
-                    <Link to='/users/signup' style={{color:'white'}}>
+                    <Link to='/users/signup' style={{color: 'blue'}}>
                         Signup
                     </Link>
                 </Box>

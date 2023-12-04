@@ -17,7 +17,7 @@ const ErrorPage = lazy(() => import('./error/errorPage'))
 
 export default function App(){
   return(
-    <Box maxW='100vw' minH='100vh' py={12} bg='#133'>
+    <Box maxW='100vw' minH='100vh' py={12}>
       <BrowserRouter>
         <Navbar/>
         <ErrorBoundary>

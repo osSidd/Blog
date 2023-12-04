@@ -6,12 +6,14 @@ export default function useBlogForm(id){
     
     const [formData, setFormData] = useState({
         title: '',
-        snippet: ''
+        snippet: '',
+        keyword: [],
     })
 
     const {state} = useBlogContext()
 
     const messageRef = useRef('')
+    const keywordRef = useRef('')
     const navigate = useNavigate()
 
     function handleChange(e){
@@ -33,7 +35,7 @@ export default function useBlogForm(id){
                     "Content-Type": "application/json"
                 },
                 method: id ? 'PATCH' : 'POST',
-                body:JSON.stringify({...formData, body: messageRef.current.value})
+                body:JSON.stringify({...formData, body: messageRef.current.value, keyword: keywordRef.current.value.split(',')})
             })
     
             if(response.ok){
@@ -61,6 +63,7 @@ export default function useBlogForm(id){
     return {
         formData,
         messageRef,
+        keywordRef,
         handleChange,
         handleSubmit,
     }

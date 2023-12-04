@@ -15,7 +15,7 @@ export default function BackToBlogsBtn(){
             leftIcon={<ArrowLeftIcon boxSize={3}/>} 
             onClick={navigateTo} 
             textTransform='capitalize' 
-            colorScheme='yellow'
+            colorScheme='purple'
             size='sm'
             mt={16}
         >

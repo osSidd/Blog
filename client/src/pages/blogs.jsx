@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 import BlogCard from "../components/blogs/blogCard";
 import useBlogsFetch from "../hooks/useBlogsFetch";
@@ -19,8 +19,8 @@ export default function Blogs(){
                         />
                     ))
                     :
-                    <Box color='white' textAlign='center'>
-                        <Heading>No Blogs, add some</Heading>
+                    <Box textAlign='center'>
+                        <Text fontSize={18} color='GrayText'>No Blogs</Text>
                     </Box>
                 }   
             </Box>

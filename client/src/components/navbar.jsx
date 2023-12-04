@@ -14,16 +14,15 @@ export default function Navbar(){
     }
 
     return (
-        <Box w={{base:'90%', md:'4xl'}} color='#fefefe' display='flex' alignItems='center' justifyContent='space-between' mx='auto'>
+        <Box w={{base:'90%', md:'4xl'}} display='flex' alignItems='center' justifyContent='space-between' mx='auto'>
             <Link to='/'><Heading as='h1' size='2xl'>Os' writings</Heading></Link>
             { user && <Button 
-                colorScheme='yellow'
+                colorScheme='teal'
                 variant='outline' 
-                textTransform='capitalize' 
                 fontSize={18}
                 onClick={e =>  handleNavigation('/blogs/create')}
             >
-                add blog
+                Add blog
             </Button>}
             {
                 user ? 
@@ -32,10 +31,10 @@ export default function Navbar(){
                     <Button ml={8} variant='link' color='red.400' onClick={logout}>Logout</Button>
                 </Box> : 
                 <Box>
-                    <Button mr={4} variant='link' colorScheme='linkedin' onClick={e => handleNavigation('/users/signup')}>
+                    <Button mr={4} variant='link' colorScheme='blue' onClick={e => handleNavigation('/users/signup')}>
                         signup
                     </Button>
-                    <Button variant='link' colorScheme='linkedin' onClick={e => handleNavigation('/users/login')}>
+                    <Button variant='link' colorScheme='blue' onClick={e => handleNavigation('/users/login')}>
                         login
                     </Button>
                 </Box>
