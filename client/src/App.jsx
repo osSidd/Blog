@@ -7,7 +7,7 @@ import './App.css'
 import ErrorBoundary from "./error/errorBoundary"
 import Navbar from "./components/navbar"
 
-const Blogs = lazy(() => import('./pages/blogs'))
+const Home = lazy(() => import('./pages/home'))
 const Blog = lazy(() => import('./pages/blog'))
 const BlogForm = lazy(() => import('./pages/blogForm'))
 const Signup = lazy(() => import('./pages/signup'))
@@ -23,7 +23,7 @@ export default function App(){
         <ErrorBoundary>
           <Suspense fallback={<div>Loading ...</div>}>
             <Routes>
-              <Route path="/" element={<Blogs/>} />
+              <Route path="/" element={<Home/>} />
               <Route path="/blogs/:id" element={<Blog/>}/>
               <Route path="/blogs/:id/edit" element={<BlogForm/>}/>
               <Route path="/blogs/create" element={<BlogForm/>}/>

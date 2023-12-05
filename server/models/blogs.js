@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Tag = require('./tags')
 
 const BlogSchema = new Schema({
     title:{
@@ -14,8 +15,8 @@ const BlogSchema = new Schema({
         type:String,
         required:true,
     },
-    keyword:{
-        type: [String],
+    tags:{
+        type: [{type: Schema.Types.ObjectId, ref: 'Tag', required: true}],
         validate: v => Array.isArray(v) && v.length > 0
     },
     body:{

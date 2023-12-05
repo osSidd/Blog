@@ -14,18 +14,16 @@ export default function BlogCard({blog}){
         <Card
             overflow='hidden'
             bg='transparent'
-            borderColor='GrayText'
             maxW={{base:'100%', md:"4xl"}}
             mb={8}
-            variant='outline'
-            mx='auto'
+            shadow='none'
         >
             <CardHeader>
                 <Heading size='md'>{blog.title}</Heading>
                 <Text mt={2} color='gray.400'>{formatDate(blog.createdAt)}</Text>
             </CardHeader>
             
-            <CardBody>
+            <CardBody ml={5} borderLeft='2px' borderColor='red.500'>
                 <Text>{blog.snippet}</Text>
             </CardBody>
 
