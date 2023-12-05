@@ -1,4 +1,4 @@
-import {Button, Card, CardHeader, CardBody, CardFooter, Heading, Image, Stack, Text} from '@chakra-ui/react'
+import {Button, Card, CardHeader, CardBody, CardFooter, Heading, Box, Image, Stack, Text} from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import formatDate from '../../utils/formatDate'
 
@@ -16,14 +16,29 @@ export default function BlogCard({blog}){
             bg='transparent'
             maxW={{base:'100%', md:"4xl"}}
             mb={8}
-            shadow='none'
+            shadow='md'
+            transition='all 0.25s ease-in-out'
+            _hover={{shadow: 'xl'}}
         >
             <CardHeader>
                 <Heading size='md'>{blog.title}</Heading>
-                <Text mt={2} color='gray.400'>{formatDate(blog.createdAt)}</Text>
+                <Box display='flex' alignItems='center' mt={4} color='gray.400'>
+                    <Box mr={8}>
+                        <i className='fa fa-clock-o'></i>
+                        <Text display='inline-block' ml={2}>{formatDate(blog.createdAt)}</Text>
+                    </Box>
+                    <Box mr={8}>
+                        <i className='fa fa-comment-o'></i>
+                        <Text display='inline-block' ml={2}>0</Text>
+                    </Box>
+                    <Box>
+                        <i className='fa fa-user-o'></i>
+                        <Text display='inline-block' ml={2}>Osama</Text>
+                    </Box>
+                </Box>
             </CardHeader>
             
-            <CardBody ml={5} borderLeft='2px' borderColor='red.500'>
+            <CardBody>
                 <Text>{blog.snippet}</Text>
             </CardBody>
 

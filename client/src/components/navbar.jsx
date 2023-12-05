@@ -14,7 +14,7 @@ export default function Navbar(){
     }
 
     return (
-        <Box px={14} w={{base:'90%', md:'4xl'}} display='flex' alignItems='center' justifyContent='space-between'>
+        <Box px={14} w={{base:'90%', md:'100%'}} display='flex' alignItems='center' justifyContent='space-between'>
             <Link to='/'><Heading as='h1' size='2xl'>Os&apos; writings</Heading></Link>
             { user && <Button 
                 colorScheme='teal'
