@@ -1,10 +1,12 @@
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Text, useColorMode } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import useUserContext from '../hooks/useUserContext'
 import useLogout from "../hooks/useLogout";
+import {AddIcon, SunIcon, MoonIcon} from '@chakra-ui/icons'
 
 export default function Navbar(){
     
+    const {colorMode, toggleColorMode} = useColorMode()
     const {user} = useUserContext()
     const {logout} = useLogout()
     const navigate = useNavigate()
@@ -17,13 +19,19 @@ export default function Navbar(){
         <Box px={14} w={{base:'90%', md:'100%'}} display='flex' alignItems='center' justifyContent='space-between'>
             <Link to='/'><Heading as='h1' size='2xl'>Os&apos; writings</Heading></Link>
             { user && <Button 
-                colorScheme='teal'
-                variant='outline' 
+                colorScheme='gray'
                 fontSize={18}
+                ml='auto'
                 onClick={() =>  handleNavigation('/blogs/create')}
+                rightIcon={<AddIcon/>}
             >
-                Add blog
+                Compose post
             </Button>}
+            <Button bg='transparent' outline='none' border='none' _hover={{bg:'transparent'}} ml='auto' mr={4} onClick={toggleColorMode}>
+                {
+                    colorMode === 'light' ? <SunIcon/> : <MoonIcon/>
+                }
+            </Button>
             {
                 user ? 
                 <Box display='flex' alignItems='center'>
