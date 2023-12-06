@@ -6,6 +6,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import './App.css'
 import ErrorBoundary from "./error/errorBoundary"
 import Navbar from "./components/navbar"
+import Footer from "./components/footer"
 
 const Home = lazy(() => import('./pages/home'))
 const Blog = lazy(() => import('./pages/blog'))
@@ -33,6 +34,7 @@ export default function App(){
             </Routes>
           </Suspense>
         </ErrorBoundary>
+        <Footer/>
       </BrowserRouter>
     </Box>
   )

@@ -1,4 +1,4 @@
-import {Box, Button, Heading} from '@chakra-ui/react'
+import {Box, Button, Checkbox, FormLabel, Heading, Input} from '@chakra-ui/react'
 import {Link} from 'react-router-dom'
 
 import FormControlElement from '../components/formControl'
@@ -40,6 +40,10 @@ export default function Login(){
                     value={formData.password}
                     handleChange={handleChange}
                 />
+                <Box mt={4} display='flex' justifyContent='space-between'>
+                    <Checkbox>Remember me</Checkbox>
+                    <Link style={{color: 'blue'}} to='/'>Forgot Password?</Link>
+                </Box>
                 <Button 
                     mx='auto' 
                     colorScheme='blue'
@@ -48,7 +52,7 @@ export default function Login(){
                     mt={8}
                     type="submit"
                 >
-                    Login
+                    Log in
                 </Button>
                 <Box 
                     textAlign='center' 
@@ -56,9 +60,9 @@ export default function Login(){
                     color='gray.400' 
                     fontSize='sm'
                 >
-                    Not registered yet? &nbsp;
+                    New here? &nbsp;
                     <Link to='/users/signup' style={{color: 'blue'}}>
-                        Signup
+                        create account
                     </Link>
                 </Box>
             </form>

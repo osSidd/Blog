@@ -1,4 +1,4 @@
-import { Box, Heading, Button, Text } from "@chakra-ui/react";
+import { Box, Heading, Button, Text, Input, FormLabel } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 import BackToBlogsBtn from "../components/backBtn";
@@ -24,14 +24,18 @@ export default function Signup(){
                 
                 <form style={{width: '75%', color:'GrayText'}} onSubmit={signupUser}>
                 
-                    <Heading textAlign='center' as='h2' fontSize='2xl'>Signup</Heading>    
-                
+                    <Heading textAlign='center' as='h2' fontSize='2xl'>Create your account</Heading>    
+                    
+                    <FormLabel mt={8} mb={2}>Profile image</FormLabel>
+                    <Input type="file" outline='none' border='none' pl={1}/>
+
                     <FormControlElement
                         label='Full Name'
                         name='name'
                         placeholder='Enter your full name'
                         value={formData.name}
                         handleChange={handleChange}
+                        required={true}
                     />
                     <FormControlElement
                         label='Email'
@@ -40,6 +44,7 @@ export default function Signup(){
                         placeholder='Enter your Email address'
                         value={formData.email}
                         handleChange={handleChange}
+                        required={true}
                     />
                     <FormControlElement
                         label='Username'
@@ -47,6 +52,7 @@ export default function Signup(){
                         placeholder='Enter your username'
                         value={formData.username}
                         handleChange={handleChange}
+                        required={true}
                     />
                     <FormControlElement
                         label='Password'
@@ -55,6 +61,7 @@ export default function Signup(){
                         placeholder='Enter a password'
                         value={formData.password}
                         handleChange={handleChange}
+                        required={true}
                     />
                     <FormControlElement
                         label='Confirm password'
@@ -63,6 +70,7 @@ export default function Signup(){
                         placeholder='Confirm password'
                         value={formData.confirmPassword}
                         handleChange={handleChange}
+                        required={true}
                     />
                     <Button 
                         mx='auto' 
@@ -72,7 +80,7 @@ export default function Signup(){
                         mt={8}
                         type="submit"
                     >
-                        Signup
+                        Sign up
                     </Button>
                     <Box 
                         textAlign='center' 
@@ -80,9 +88,9 @@ export default function Signup(){
                         color='gray.400' 
                         fontSize='sm'
                     >
-                        Already registered? &nbsp;
+                        Already have an account? &nbsp;
                         <Link to='/users/login' style={{color: 'blue'}}>
-                            Login
+                            Log in
                         </Link>
                     </Box>
                 </form>

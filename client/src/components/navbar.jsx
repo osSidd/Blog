@@ -40,10 +40,10 @@ export default function Navbar(){
                 </Box> : 
                 <Box>
                     <Button mr={4} variant='link' colorScheme='blue' onClick={() => handleNavigation('/users/signup')}>
-                        signup
+                        create account
                     </Button>
                     <Button variant='link' colorScheme='blue' onClick={() => handleNavigation('/users/login')}>
-                        login
+                        log in
                     </Button>
                 </Box>
             }
