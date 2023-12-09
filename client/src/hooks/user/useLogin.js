@@ -21,7 +21,7 @@ export default function useLogin(){
         e.preventDefault()
         
         try{
-            const response = await fetch('http://localhost:3000/users/login', {
+            const response = await fetch(`${import.meta.env.VITE_URL}/users/login`, {
                 method: 'POST',
                 credentials: 'include',
                 headers:{

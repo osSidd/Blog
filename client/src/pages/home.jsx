@@ -15,8 +15,6 @@ export default function Home(){
     const {blogs} = useBlogsFetch()  
     const {tags} = useTagsFetch()
 
-    console.log(blogs)
-
     return(
         <Box display='flex' justifyContent='space-between' px={8} py={14}>
             <Box w='65%'>

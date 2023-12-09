@@ -12,7 +12,7 @@ export default function useTagsFetch(){
 
         async function fetchTags(){
             try{
-                const res = await fetch(`http://localhost:3000/api/tags`, {signal})
+                const res = await fetch(`${import.meta.env.VITE_URL}/api/tags`, {signal})
                 if(!signal.aborted){
                     if(res.ok){
                         const data = await res.json()

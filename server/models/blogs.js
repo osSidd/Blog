@@ -21,7 +21,7 @@ const BlogSchema = new Schema({
     body:{
         type:String,
         required:true,
-    }
+    },
 }, {timestamps:true})
 
 

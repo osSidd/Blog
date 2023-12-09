@@ -14,7 +14,6 @@ export default function useBlogForm(id){
 
     const {state} = useBlogContext()
     const {tags, dispatch} = useTagContext()
-    console.log(formData)
 
     const messageRef = useRef('')
     const keywordRef = useRef('')
@@ -37,11 +36,9 @@ export default function useBlogForm(id){
         setFormData(prev => ({...prev, tags: [...prev.tags, id]}))
     }
 
-    console.log(formData)
-
     async function handleSubmit(e){
         e.preventDefault()
-        const url = id ? `http://localhost:3000/api/blogs/${id}` : 'http://localhost:3000/api/blogs'
+        const url = id ? `${import.meta.env.VITE_URL}/api/blogs/${id}` : `${import.meta.env.VITE_URL}/api/blogs`
         try{
             const response = await fetch(url, {
                 credentials: "include",
@@ -72,7 +69,6 @@ export default function useBlogForm(id){
         }
     }, [id])
 
-    // console.log(id, state.blog)
     return {
         formData,
         messageRef,

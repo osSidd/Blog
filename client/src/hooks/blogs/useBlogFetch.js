@@ -13,7 +13,7 @@ export default function useBlogFetch(id){
 
         async function fetchBlogs(){
             try{
-                const res = await fetch(`http://localhost:3000/api/blogs/${id}`, {signal})
+                const res = await fetch(`${import.meta.env.VITE_URL}/api/blogs/${id}`, {signal})
                 if(!signal.aborted){
                     if(res.ok){
                         const data = await res.json()
@@ -41,13 +41,12 @@ export default function useBlogFetch(id){
 
     async function deleteBlog(){
         try{
-            const response = await fetch(`http://localhost:3000/api/blogs/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_URL}/api/blogs/${id}`, {
                 method: 'DELETE',
                 credentials: "include",
             })
     
             if(response.ok){
-                const data = await response.json()
                 navigate('/')
             }
         }catch(err){

@@ -9,6 +9,8 @@ import useBlogFetch from '../hooks/blogs/useBlogFetch'
 import useUserContext from '../hooks/user/useUserContext'
 
 import formatDate from '../utils/formatDate';
+import Comments from '../components/singleBlog/comments';
+import useCommentFetch from '../hooks/comments/useCommentFetch';
 
 export default function Blog(){
 
@@ -16,8 +18,9 @@ export default function Blog(){
     const id = params.id
     
     const {blog, deleteBlog, editBlog} = useBlogFetch(id)
+    const {comments} = useCommentFetch(id)
     const {user} = useUserContext()
-    console.log(blog)
+
     return(
         <Box w={{base:'90%', md:'4xl'}} mx='auto'>
             
@@ -47,6 +50,8 @@ export default function Blog(){
                         <EditIcon boxSize={8} color='blue.300' cursor='pointer' onClick={editBlog}/>
                     </Box>
                 }
+
+                {comments.length ? <Comments comments={comments}/> : <Text mt={12}>No comments</Text> }
             </Box>
         </Box>
     )

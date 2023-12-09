@@ -11,7 +11,7 @@ export default function useBlogsFetch(){
 
         async function fetchBlogs(){
             try{
-                const response = await fetch('http://localhost:3000/api/blogs', {signal})
+                const response = await fetch(`${import.meta.env.VITE_URL}/api/blogs`, {signal})
 
                 if(!signal.aborted){
                     if(response.ok){
@@ -22,7 +22,7 @@ export default function useBlogsFetch(){
                         })
                     }
                 }else{
-                    console.error(`Http error! Status:${blogResponse.status}`)
+                    console.error(`Http error! Status:${response.status}`)
                 }                
             }catch(err){
                 if(!signal.aborted){
