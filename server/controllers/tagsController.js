@@ -41,7 +41,7 @@ async function postTag(req, res, next){
     try{
 
         const name = req.body.name
-
+        console.log(name)
         if(!name) return res.status(400).json({error: 'tag name required'})
 
         const tag = await Tag.create({name})
@@ -81,7 +81,7 @@ async function patchATags(req, res, next){
         if(!mongoose.Types.ObjectId.isValid(id))
             res.status(400).json({error: 'id not valid'})
 
-        const tag = await Tag.findByIdAndUpdate(id)
+        const tag = await Tag.findByIdAndUpdate(id, {...req.body})
         
         if(!tag){
             return res.status(404).json({error: 'tag not found'})
@@ -92,3 +92,4 @@ async function patchATags(req, res, next){
     }
 }
 
+module.exports = {getAllTags, getATags, postTag, deleteATags, patchATags}

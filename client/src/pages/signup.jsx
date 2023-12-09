@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 import BackToBlogsBtn from "../components/backBtn";
 import FormControlElement from "../components/formControl";
-import useSignup from "../hooks/useSignup";
+
+import useSignup from "../hooks/user/useSignup";
 
 export default function Signup(){
 

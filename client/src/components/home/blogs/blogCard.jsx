@@ -1,7 +1,9 @@
 import {Button, Card, CardHeader, CardBody, CardFooter, Heading, Box, Image, Stack, Text, Avatar, ButtonGroup} from '@chakra-ui/react'
-import { useNavigate } from 'react-router-dom'
-import formatDate from '../../utils/formatDate'
 import {TimeIcon, ChatIcon} from '@chakra-ui/icons'
+
+import { useNavigate } from 'react-router-dom'
+
+import formatDate from '../../../utils/formatDate'
 
 export default function BlogCard({blog}){
 
@@ -48,10 +50,11 @@ export default function BlogCard({blog}){
                         </Box>
                     </Box>
                     <ButtonGroup mt={3}>
-                            <Button size='xs' colorScheme='teal'>Planet</Button>
-                            <Button size='xs' colorScheme='teal'>Environment</Button>
-                            <Button size='xs' colorScheme='teal'>Global warming</Button>
-                            <Button size='xs' colorScheme='teal'>Crisis</Button>
+                            {
+                                blog.tags.map(tag => (
+                                    <Button key={tag._id} size='xs' colorScheme='teal'>{tag.name}</Button>
+                                ))
+                            }
                     </ButtonGroup>
                 </CardHeader>
                 

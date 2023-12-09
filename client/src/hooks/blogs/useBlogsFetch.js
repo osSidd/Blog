@@ -11,17 +11,18 @@ export default function useBlogsFetch(){
 
         async function fetchBlogs(){
             try{
-                const res = await fetch('http://localhost:3000/api/blogs', {signal})
+                const response = await fetch('http://localhost:3000/api/blogs', {signal})
+
                 if(!signal.aborted){
-                    if(res.ok){
-                        const data = await res.json()
+                    if(response.ok){
+                        const data = await response.json()
                         dispatch({
                             type: 'SET_ALL_BLOGS',
                             payload: data
                         })
                     }
                 }else{
-                    console.error(`Http error! Status:${res.status}`)
+                    console.error(`Http error! Status:${blogResponse.status}`)
                 }                
             }catch(err){
                 if(!signal.aborted){

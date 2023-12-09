@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Tag = require('./tags')
 
 const BlogSchema = new Schema({
     title:{

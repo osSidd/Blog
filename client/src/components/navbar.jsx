@@ -1,8 +1,10 @@
 import { Box, Button, Heading, Text, useColorMode } from "@chakra-ui/react";
-import { Link, useNavigate } from "react-router-dom";
-import useUserContext from '../hooks/useUserContext'
-import useLogout from "../hooks/useLogout";
 import {AddIcon, SunIcon, MoonIcon} from '@chakra-ui/icons'
+
+import { Link, useNavigate } from "react-router-dom";
+
+import useUserContext from '../hooks/user/useUserContext'
+import useLogout from "../hooks/user/useLogout";
 
 export default function Navbar(){
     

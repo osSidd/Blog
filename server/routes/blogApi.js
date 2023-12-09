@@ -12,18 +12,18 @@ const {
 const auth = require('../middleware/auth')
 
 //get all blogs
-router.get('/blogs', getAllBlogs);
+router.get('/', getAllBlogs);
 
 //get a blog
-router.get('/blogs/:id', getABlog);
+router.get('/:id', getABlog);
 
 //post a new blog
-router.post('/blogs', auth, postNewBlog);
+router.post('/', auth, postNewBlog);
 
 //patch a blog
-router.patch('/blogs/:id', auth, updateABlog);
+router.patch('/:id', auth, updateABlog);
 
 //delete a blog
-router.delete('/blogs/:id', auth, deleteABlog);
+router.delete('/:id', auth, deleteABlog);
 
 module.exports = router

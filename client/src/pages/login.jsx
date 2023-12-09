@@ -3,7 +3,8 @@ import {Link} from 'react-router-dom'
 
 import FormControlElement from '../components/formControl'
 import BackToBlogsBtn from '../components/backBtn'
-import useLogin from '../hooks/useLogin'
+
+import useLogin from '../hooks/user/useLogin'
 
 export default function Login(){
 

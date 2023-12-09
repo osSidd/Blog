@@ -1,11 +1,13 @@
 import {useParams} from 'react-router-dom'
 
 import { Box, Button, Heading, Text, } from "@chakra-ui/react";
-import BackToBlogsBtn from '../components/backBtn';
 import {DeleteIcon, EditIcon} from '@chakra-ui/icons'
 
-import useBlogFetch from '../hooks/useBlogFetch'
-import useUserContext from '../hooks/useUserContext'
+import BackToBlogsBtn from '../components/backBtn';
+
+import useBlogFetch from '../hooks/blogs/useBlogFetch'
+import useUserContext from '../hooks/user/useUserContext'
+
 import formatDate from '../utils/formatDate';
 
 export default function Blog(){
@@ -15,7 +17,7 @@ export default function Blog(){
     
     const {blog, deleteBlog, editBlog} = useBlogFetch(id)
     const {user} = useUserContext()
-
+    console.log(blog)
     return(
         <Box w={{base:'90%', md:'4xl'}} mx='auto'>
             
@@ -29,8 +31,8 @@ export default function Blog(){
                 </Box>
                 <Box>
                     {
-                        blog.keyword?.map((item, index) => (
-                            <Button type='button' mr={3} colorScheme='teal' color='white' key={index}>{item}</Button>
+                        blog.tags?.map(tag => (
+                            <Button type='button' mr={3} colorScheme='teal' key={tag._id}>{tag.name}</Button>
                         )) 
                     }
                 </Box>

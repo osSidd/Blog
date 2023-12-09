@@ -4,7 +4,7 @@ const Blog = require('../models/blogs');
 //get all blogs
 const getAllBlogs = async (req, res) => {
     try{
-        const blogs = await Blog.find().sort({createdAt: -1});
+        const blogs = await Blog.find().sort({createdAt: -1}).populate('tags');
         return res.status(200).json(blogs)
     }catch(err){
         return res.status(400).json({error: err.message})
@@ -32,6 +32,7 @@ const getABlog = async (req, res) => {
 //post a new blog
 const postNewBlog = async (req,res) => {
     try{
+        console.log(req.body)
         const blog = new Blog({...req.body});
         const newBlog = await blog.save();
         return res.status(201).json(newBlog);

@@ -11,6 +11,7 @@ import Footer from "./components/footer"
 const Home = lazy(() => import('./pages/home'))
 const Blog = lazy(() => import('./pages/blog'))
 const BlogForm = lazy(() => import('./pages/blogForm'))
+const TagForm = lazy(() => import('./pages/tagForm'))
 const Signup = lazy(() => import('./pages/signup'))
 const Login = lazy(() => import('./pages/login'))
 const ErrorPage = lazy(() => import('./error/errorPage'))
@@ -28,6 +29,7 @@ export default function App(){
               <Route path="/blogs/:id" element={<Blog/>}/>
               <Route path="/blogs/:id/edit" element={<BlogForm/>}/>
               <Route path="/blogs/create" element={<BlogForm/>}/>
+              <Route path="/tags/create" element={<TagForm/>}/>
               <Route path="/users/signup" element={<Signup/>}/>
               <Route path="/users/login" element={<Login/>}/>
               <Route path="*" element={<ErrorPage/>}/>

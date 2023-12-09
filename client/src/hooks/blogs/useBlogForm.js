@@ -1,16 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import useBlogContext from "./useBlogContext";
 import { useNavigate } from "react-router-dom";
+
+import useBlogContext from "./useBlogContext";
+import useTagContext from "../tags/useTagContext";
 
 export default function useBlogForm(id){
     
     const [formData, setFormData] = useState({
         title: '',
         snippet: '',
-        keyword: [],
+        tags: [],
     })
 
     const {state} = useBlogContext()
+    const {tags, dispatch} = useTagContext()
+    console.log(formData)
 
     const messageRef = useRef('')
     const keywordRef = useRef('')
@@ -25,6 +29,16 @@ export default function useBlogForm(id){
         }))
     }
 
+    function selectTags(id){
+        dispatch({
+            type: 'SELECT_A_TAG',
+            payload: id
+        })
+        setFormData(prev => ({...prev, tags: [...prev.tags, id]}))
+    }
+
+    console.log(formData)
+
     async function handleSubmit(e){
         e.preventDefault()
         const url = id ? `http://localhost:3000/api/blogs/${id}` : 'http://localhost:3000/api/blogs'
@@ -35,11 +49,10 @@ export default function useBlogForm(id){
                     "Content-Type": "application/json"
                 },
                 method: id ? 'PATCH' : 'POST',
-                body:JSON.stringify({...formData, body: messageRef.current.value, keyword: keywordRef.current.value.split(',')})
+                body:JSON.stringify({...formData, body: messageRef.current.value})
             })
     
             if(response.ok){
-                const data = await response.json()
                 navigate('/')
             }
         }catch(err){
@@ -64,7 +77,9 @@ export default function useBlogForm(id){
         formData,
         messageRef,
         keywordRef,
+        tags,
         handleChange,
         handleSubmit,
+        selectTags,
     }
 }

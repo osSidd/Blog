@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { BlogContext } from "../context/blogContext";
+import { BlogContext } from "../../context/blogContext";
 
 export default function useBlogContext(){
     

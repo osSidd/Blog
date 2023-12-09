@@ -1,15 +1,18 @@
-import { Box, Button, FormControl, FormLabel, Heading, Input, Textarea } from "@chakra-ui/react";
+import { Link, useParams } from "react-router-dom";
+
+import { Box, Button, FormControl, FormLabel, Heading, Input, Text, Textarea } from "@chakra-ui/react";
+
 import BackToBlogsBtn from "../components/backBtn";
-import useBlogForm from "../hooks/useBlogForm";
-import { useParams } from "react-router-dom";
+
+import useBlogForm from "../hooks/blogs/useBlogForm";
 
 export default function BlogForm(){
 
     const params = useParams()
     const id = params.id
 
-    const {formData, messageRef, keywordRef, handleChange, handleSubmit} = useBlogForm(id)
-    
+    const {formData, messageRef, tags, handleChange, handleSubmit, selectTags} = useBlogForm(id)
+
     return (
         <Box w={{base:'90%', md:'4xl'}} mx='auto'>
             <BackToBlogsBtn/>
@@ -38,14 +41,13 @@ export default function BlogForm(){
                     />
                 </FormControl>
                 <FormControl mt={8}>
-                    <FormLabel>Keywords</FormLabel>
-                    <Input
-                        name="keywords"
-                        ref={keywordRef}
-                        placeholder="Enter keywords (comma ',' separated values)"
-                        required 
-                    />
+                    <FormLabel>Tags</FormLabel>
+                    
+                    {
+                        tags.map(tag => (<Button onClick={() => selectTags(tag._id)} colorScheme={tag.selected ? 'teal' : 'gray'} mr={2} key={tag._id}>{tag.name}</Button>))
+                    }
                 </FormControl>
+                <Text my={6}><Link style={{fontWeight:700}} to='/tags/create'>click here</Link> to create, edit or delete a tag</Text>
                 <FormControl mt={8}>
                     <FormLabel>Body</FormLabel>
                     <Textarea 

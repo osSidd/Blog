@@ -1,11 +1,8 @@
 import { Box, Text } from "@chakra-ui/react";
 
-import BlogCard from "../components/blogs/blogCard";
-import useBlogsFetch from "../hooks/useBlogsFetch";
+import BlogCard from "./blogCard";
 
-export default function Blogs(){
-
-    const {blogs} = useBlogsFetch()  
+export default function Blogs({blogs}){
 
     return (
         <Box>
