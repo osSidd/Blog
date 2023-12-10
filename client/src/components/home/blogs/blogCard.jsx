@@ -42,7 +42,7 @@ export default function BlogCard({blog}){
                         </Box>
                         <Box mr={8}>
                             <ChatIcon/>
-                            <Text display='inline-block' ml={2}>0</Text>
+                            <Text display='inline-block' ml={2}>{blog.comments.length}</Text>
                         </Box>
                         <Box>
                             <Avatar size='xs' name='Osama Siddiquee' src='https://bit.ly/dan-abramov'/>

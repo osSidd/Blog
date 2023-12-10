@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const Comment = require('../models/comment')
+const Blog = require('../models/blogs')
 
 //get all comments for a blog
 const getAllComments = async (req, res, next) => {
@@ -16,7 +17,15 @@ const getAllComments = async (req, res, next) => {
 //post a comment
 const postComment = async (req, res, next) => {
     try{
+        const id = req.params.id
+        if(!mongoose.Types.ObjectId.isValid(id)) 
+        return res.status(400).json({error: 'invalid comment id'})
+
         const comment = await Comment.create({...req.body})
+
+        const blog = await Blog.findByIdAndUpdate(id, {$push: {comments: comment._id}})
+        if(!blog) return res.status(404).json({error: 'blog not found'})
+
         return res.status(200).json(comment)
     }catch(err){
         res.status(400).json({error: err.message})

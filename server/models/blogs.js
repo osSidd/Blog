@@ -22,6 +22,7 @@ const BlogSchema = new Schema({
         type:String,
         required:true,
     },
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comment', required: true}],
 }, {timestamps:true})
 
 

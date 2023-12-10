@@ -11,7 +11,7 @@ export default function useCommentForm(id){
     async function addComment(e){
         e.preventDefault()
         try{
-            const response = await fetch(`${import.meta.env.VITE_URL}/api/comments`, {
+            const response = await fetch(`${import.meta.env.VITE_URL}/api/comments/${id}`, {
                 method:'POST',
                 credentials:'include',
                 headers: {

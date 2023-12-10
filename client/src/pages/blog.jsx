@@ -10,7 +10,6 @@ import useUserContext from '../hooks/user/useUserContext'
 
 import formatDate from '../utils/formatDate';
 import Comments from '../components/singleBlog/comments';
-import useCommentFetch from '../hooks/comments/useCommentFetch';
 import CommentForm from '../components/singleBlog/commentForm';
 
 export default function Blog(){
@@ -19,7 +18,6 @@ export default function Blog(){
     const id = params.id
     
     const {blog, deleteBlog, editBlog} = useBlogFetch(id)
-    const {comments} = useCommentFetch(id)
     const {user} = useUserContext()
 
     return(
@@ -52,7 +50,7 @@ export default function Blog(){
                     </Box>
                 }
 
-                {comments.length ? <Comments comments={comments}/> : <Text mt={12}>No comments</Text> }
+                {blog.comments.length ? <Comments comments={blog.comments}/> : <Text mt={12}>No comments</Text> }
                 { user && <Box mt={8}><CommentForm id={id}/></Box>}
             </Box>
         </Box>

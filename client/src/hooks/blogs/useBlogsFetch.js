@@ -16,6 +16,7 @@ export default function useBlogsFetch(){
                 if(!signal.aborted){
                     if(response.ok){
                         const data = await response.json()
+                        console.log(data)
                         dispatch({
                             type: 'SET_ALL_BLOGS',
                             payload: data

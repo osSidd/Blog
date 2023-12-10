@@ -1,5 +1,6 @@
 const { default: mongoose } = require('mongoose');
 const Blog = require('../models/blogs');
+const Comment = require('../models/comment')
 
 //get all blogs
 const getAllBlogs = async (req, res) => {
@@ -19,7 +20,7 @@ const getABlog = async (req, res) => {
 
         if(!isIdValid) return res.status(400).json({error: "invalid id"});
 
-        const blog = await Blog.findById(id).populate('tags');
+        const blog = await Blog.findById(id).populate('tags comments');
         
         if(!blog) return res.status(404).json({error: "blog not found"})
 

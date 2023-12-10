@@ -8,7 +8,7 @@ const auth = require('../middleware/auth')
 router.get('/:id', getAllComments)
 
 //create a comment
-router.post('/', auth, postComment)
+router.post('/:id', auth, postComment)
  
 //updata a comment
 router.patch('/:id', auth, updateComment)
