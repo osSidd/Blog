@@ -8,11 +8,11 @@ export default function Comments({comments}){
         <Box mt={16}>
             {
                 comments.map(comment => (
-                    <Box key={comment._id}>
+                    <Box mt={6} key={comment._id}>
                         <Box display='flex' alignItems='center'>
                             <Avatar mr={4} size='xs' name='Osama Siddiquee' src='https://bit.ly/dan-abramov'/>
                             <Text mr={4}>{comment.author}</Text>
-                            <Text fontSize='sm'>{formatDate(comment.createdAt)}</Text>
+                            <Text fontSize='xs'>{formatDate(comment.createdAt)}</Text>
                         </Box>
                         <Box ml={12} mt={4} fontSize='xl'>{comment.body}</Box>
                         <Box ml={12} mt={4} display='flex' alignItems='center'>
