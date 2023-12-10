@@ -23,7 +23,7 @@ export default function Home(){
             <Box w='30%'>
                 <Box><Search/></Box>
                 <Box mt={14}><Tags tags={tags} /></Box>
-                <Box mt={14}><Recent/></Box>
+                <Box mt={14}><Recent blogs={blogs}/></Box>
                 <Box mt={14}><NewsLetters/></Box>
                 <Box mt={14}><Social/></Box>
             </Box>

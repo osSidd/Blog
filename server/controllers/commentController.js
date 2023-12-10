@@ -70,13 +70,15 @@ const increaseLikes = async (req, res, next) => {
 //delete a comment
 const deleteComment = async (req, res, next) => {
     try{
-        const id = req.params.id
-        if(!mongoose.Types.ObjectId.isValid(id)) 
+        const {blogId, commentId} = req.params
+        if(!mongoose.Types.ObjectId.isValid(blogId) || !mongoose.Types.ObjectId.isValid(commentId)) 
             return res.status(400).json({error: 'invalid comment id'})
 
-        const comment = await Comment.findByIdAndDelete(id)
-
+        const comment = await Comment.findByIdAndDelete(commentId)
         if(!comment) return res.status(404).json({error: 'comment not found'})
+        
+        const blog = await Blog.findByIdAndUpdate(blogId, {$pull: {comments: comment._id}})
+        if(!blog) return res.status(404).json({error: 'blog not found'})
 
         return res.status(200).json(comment)
 

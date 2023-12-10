@@ -1,4 +1,4 @@
-import {Button, Card, CardHeader, CardBody, CardFooter, Heading, Box, Image, Stack, Text, Avatar, ButtonGroup} from '@chakra-ui/react'
+import {Button, Card, CardHeader, CardBody, CardFooter, Heading, Box, Image, Stack, Text, Avatar, ButtonGroup, Badge} from '@chakra-ui/react'
 import {TimeIcon, ChatIcon} from '@chakra-ui/icons'
 
 import { useNavigate } from 'react-router-dom'
@@ -49,13 +49,13 @@ export default function BlogCard({blog}){
                             <Text display='inline-block' ml={2}>Osama</Text>
                         </Box>
                     </Box>
-                    <ButtonGroup mt={3}>
+                    <Stack mt={3} direction='row'>
                             {
                                 blog.tags.map(tag => (
-                                    <Button key={tag._id} size='xs' colorScheme='teal'>{tag.name}</Button>
+                                    <Badge key={tag._id} px={2} colorScheme='teal'>{tag.name}</Badge>
                                 ))
                             }
-                    </ButtonGroup>
+                    </Stack>
                 </CardHeader>
                 
                 <CardBody mt={-5}>

@@ -1,16 +1,21 @@
+import { Fragment } from "react";
 import { Box, Divider, Heading, Text } from "@chakra-ui/react";
+import formatDate from "../../utils/formatDate";
 
-export default function Recent(){
+export default function Recent({blogs}){
     return(
         <Box>
             <Heading as='h2' fontSize='xl'>Recent posts</Heading>
             <Box mt={4}>
-                <Text>Climate Change - Planet on life support | Crisis of the hour</Text>
-                <Text fontSize='small' color='GrayText'>December 4, 2023</Text>
-                <Divider my={2}/>
-                <Text>Da vinci code, Angels & Demons, The Inferno - 'Dan Brown'</Text>
-                <Text fontSize='small' color='GrayText'>December 3, 2023</Text>
-
+                {
+                    blogs.slice(0,3).map(blog => (
+                        <Fragment key={blog._id}>
+                            <Text>{blog.title}</Text>
+                            <Text fontSize='small' color='GrayText'>{formatDate(blog.createdAt)}</Text> 
+                            <Divider my={2}/>
+                        </Fragment>
+                    ))
+                }
             </Box>
         </Box>
     )

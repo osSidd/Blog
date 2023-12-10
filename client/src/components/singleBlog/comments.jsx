@@ -1,9 +1,13 @@
 import {Box, Avatar, Text} from '@chakra-ui/react'
-import {StarIcon} from '@chakra-ui/icons'
+import {DeleteIcon, EditIcon, StarIcon} from '@chakra-ui/icons'
 
 import formatDate from '../../utils/formatDate'
+import useCommentForm from '../../hooks/comments/useCommentForm'
 
-export default function Comments({comments}){
+export default function Comments({blogId, comments}){
+
+    const {deleteComment} = useCommentForm()
+
     return (
         <Box mt={16}>
             {
@@ -17,7 +21,9 @@ export default function Comments({comments}){
                         <Box ml={12} mt={4} fontSize='xl'>{comment.body}</Box>
                         <Box ml={12} mt={4} display='flex' alignItems='center'>
                             <StarIcon mr={2}/>
-                            <Text>{comment.likes}</Text>
+                            <Text mr={8}>{comment.likes}</Text>
+                            <DeleteIcon color='red.300' mr={2} cursor='pointer' onClick={() => deleteComment(blogId, comment._id)}/>
+                            <EditIcon color='blue.300' cursor='pointer'/>
                         </Box>
                     </Box>
                 ))

@@ -17,6 +17,6 @@ router.patch('/:id', auth, updateComment)
 router.patch('/:id', auth, increaseLikes)
 
 //delete a comment
-router.delete('/:id', auth, deleteComment)
+router.delete('/:blogId/:commentId', auth, deleteComment)
 
 module.exports = router

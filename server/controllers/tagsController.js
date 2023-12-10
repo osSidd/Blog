@@ -15,22 +15,25 @@ async function getAllTags(req, res, next){
     }
 }
 
-//get a tags
+//get all blogs for a tag
 async function getATags(req, res, next){
     try{
-
         const id = req.params.id
-        
+
+        if(id === 'ALL'){
+            const blogs = await Blog.find().populate('tags')
+            return res.status(200).json(blogs)
+        }
+
         if(!mongoose.Types.ObjectId.isValid(id))
             res.status(400).json({error: 'id not valid'})
 
         const tag = await Tag.findById(id)
-        const blogs = await Blog.find({tags: tag})
+        if(!tag) return res.status(404).json({error: 'tag not found'})
+
+        const blogs = await Blog.find({tags: {$in: [tag._id]}}).populate('tags')
         
-        if(!tag){
-            return res.status(404).json({error: 'tag not found'})
-        }
-        return res.status(200).json(tag)
+        return res.status(200).json(blogs)
     }catch(err){
         res.status(400).json({error: err.message})
     }

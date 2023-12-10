@@ -14,6 +14,16 @@ const reducer = (state, action) => {
                 ...state,
                 blog: action.payload,
             }
+        case 'ADD_COMMENT':
+            return {
+                ...state,
+                blog: {...state.blog, comments: [...state.blog.comments, action.payload]}
+            }
+        case 'DELETE_COMMENT':
+            return {
+                ...state,
+                blog: {...state.blog, comments: state.blog.comments.filter(cmt => cmt._id !== action.payload)}
+            }
         default:
             return state
     }

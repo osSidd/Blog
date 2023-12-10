@@ -1,12 +1,12 @@
 import { useRef } from "react";
 import useUserContext from "../user/useUserContext";
-import useCommentContext from '../comments/useCommentContext'
+import useBlogContext from "../blogs/useBlogContext";
 
 export default function useCommentForm(id){
     
     const commentRef = useRef()
     const {user} = useUserContext()
-    const {dispatch} = useCommentContext()
+    const {dispatch} = useBlogContext()
 
     async function addComment(e){
         e.preventDefault()
@@ -26,7 +26,26 @@ export default function useCommentForm(id){
                     type: 'ADD_COMMENT',
                     payload: data,
                 })
+                commentRef.current.value = ''
+            }
+        }catch(err){
+            console.log(err.message)
+        }
+    }
 
+    async function deleteComment(blogId, commentId){
+        try{
+            const response = await fetch(`${import.meta.env.VITE_URL}/api/comments/${blogId}/${commentId}`,{
+                method:'DELETE',
+                credentials:'include'
+            })
+
+            if(response.ok){
+                const data = await response.json()
+                dispatch({
+                    type: 'DELETE_COMMENT',
+                    payload: data._id
+                })
             }
         }catch(err){
             console.log(err.message)
@@ -35,6 +54,7 @@ export default function useCommentForm(id){
 
     return {
         commentRef,
-        addComment
+        addComment,
+        deleteComment,
     }
 }

@@ -1,6 +1,6 @@
 import {useParams} from 'react-router-dom'
 
-import { Box, Button, Heading, Text, } from "@chakra-ui/react";
+import { Badge, Box, Button, Heading, Stack, Text, } from "@chakra-ui/react";
 import {DeleteIcon, EditIcon} from '@chakra-ui/icons'
 
 import BackToBlogsBtn from '../components/backBtn';
@@ -31,13 +31,13 @@ export default function Blog(){
                     <Text mr={4}>Created on {formatDate(blog.createdAt)}</Text>
                     <Text>By - Author&apos; s name</Text>
                 </Box>
-                <Box>
+                <Stack direction='row'>
                     {
                         blog.tags?.map(tag => (
-                            <Button type='button' mr={3} colorScheme='teal' key={tag._id}>{tag.name}</Button>
+                            <Badge px={2} fontSize={16} colorScheme='teal' variant='subtle' key={tag._id}>{tag.name}</Badge>
                         )) 
                     }
-                </Box>
+                </Stack>
                 <Box mt={2} h={0.25} bg='blackAlpha.400' />
                 <Box mt={4}>
                     <Text>{blog.body}</Text>
@@ -50,7 +50,7 @@ export default function Blog(){
                     </Box>
                 }
 
-                {blog.comments.length ? <Comments comments={blog.comments}/> : <Text mt={12}>No comments</Text> }
+                {blog.comments?.length ? <Comments blogId={id} comments={blog.comments}/> : <Text mt={12}>No comments</Text> }
                 { user && <Box mt={8}><CommentForm id={id}/></Box>}
             </Box>
         </Box>

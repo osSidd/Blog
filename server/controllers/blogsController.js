@@ -5,7 +5,7 @@ const Comment = require('../models/comment')
 //get all blogs
 const getAllBlogs = async (req, res) => {
     try{
-        const blogs = await Blog.find().sort({createdAt: -1}).populate('tags');
+        const blogs = await Blog.find().select('-body -updatedAt -__v').sort({createdAt: -1}).populate('tags');
         return res.status(200).json(blogs)
     }catch(err){
         return res.status(400).json({error: err.message})

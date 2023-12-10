@@ -7,7 +7,7 @@ const auth = require('../middleware/auth')
 //get all tags
 router.get('/', getAllTags)
 
-//get a tag
+//get all blogs for a tag
 router.get('/:id', getATags)
 
 //create a new tag
