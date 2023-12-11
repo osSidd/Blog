@@ -1,6 +1,9 @@
 const { default: mongoose } = require('mongoose');
+
 const Blog = require('../models/blogs');
 const Comment = require('../models/comment')
+
+const getImageUrl = require('../utils/getImageUrl')
 
 //get all blogs
 const getAllBlogs = async (req, res) => {
@@ -34,9 +37,11 @@ const getABlog = async (req, res) => {
 const postNewBlog = async (req,res) => {
     try{
         const tags = req.body.tags.split(',')
-        const cover = req.file.filename
+        const cover = getImageUrl(req, 'cover')
+
         const blog = new Blog({...req.body,tags, cover});
         const newBlog = await blog.save();
+        
         return res.status(201).json(newBlog);
     }catch(err){
         return res.status(400).json({error: err.message})

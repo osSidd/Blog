@@ -12,7 +12,7 @@ export default function BlogCard({blog}){
     function navigateToBlog(){
         navigate(`/blogs/${blog._id}`)
     }
-
+    
     return (
         <Card
             overflow='hidden'
@@ -29,7 +29,7 @@ export default function BlogCard({blog}){
             <Image
                 objectFit='cover'
                 maxW={{ base: '100%', sm: '250px' }}
-                src= {blog.cover ? `${import.meta.env.VITE_URL}/images/blog/${blog.cover}` : 'https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60'}
+                src= {blog.cover ? blog.cover : 'https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60'}
                 alt='Caffe Latte'
             />
             <Stack>

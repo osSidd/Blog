@@ -37,7 +37,7 @@ export default function Navbar(){
             {
                 user ? 
                 <Box display='flex' alignItems='center'>
-                    <Avatar src={`${import.meta.env.VITE_URL}/images/${avatar}`} size='sm' mr={4}/>
+                    <Avatar src={avatar} size='sm' mr={4}/>
                     <Text>{user}</Text>
                     <Button ml={8} variant='link' color='red.400' onClick={logout}>Logout</Button>
                 </Box> : 

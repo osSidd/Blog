@@ -14,7 +14,7 @@ export default function Comments({user, avatar, blogId, comments}){
                 comments.map(comment => (
                     <Box mt={6} key={comment._id}>
                         <Box display='flex' alignItems='center'>
-                            <Avatar mr={4} size='xs' name='Osama Siddiquee' src={`${import.meta.env.VITE_URL}/images/${comment.avatar}`}/>
+                            <Avatar mr={4} size='xs' name='Osama Siddiquee' src={comment.avatar}/>
                             <Text mr={4}>{comment.author}</Text>
                             <Text fontSize='xs'>{formatDate(comment.createdAt)}</Text>
                         </Box>

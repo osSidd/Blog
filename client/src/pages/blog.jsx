@@ -27,7 +27,7 @@ export default function Blog(){
             
             <Box mt={12}>
                 <Image
-                    src={`${import.meta.env.VITE_URL}/images/blog/${blog.cover}`}
+                    src={blog.cover}
                     w='100%'
                 />
                 <Heading mt={12} as='h1' size='4xl'>{blog.title}</Heading>

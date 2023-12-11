@@ -1,8 +1,10 @@
 const { default: mongoose } = require('mongoose')
-const User = require('../models/users')
 const {v4: uuid} = require('uuid')
 
+const User = require('../models/users')
+
 const Session = require('../models/session')
+const getImageUrl = require('../utils/getImageUrl')
 
 //get all users
 async function getAllUsers(req, res, next){
@@ -65,13 +67,13 @@ async function userLogout(req, res, next){
 //new user sign up
 async function userSignup(req,res,next){
    try{
-        const avatar = req.file.filename
+        const avatar = getImageUrl(req, 'user')
         const user = await User.create({...req.body, avatar})
         return res.status(201).json(user)
    }catch(err){
         return res.status(400).json({error: err.message})
    }
-}
+} 
 
 //delete a user
 async function deleteUser(req,res,next){
