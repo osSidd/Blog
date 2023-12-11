@@ -33,7 +33,7 @@ async function userLogin(req,res,next){
         const session = await Session.create({username: user.username, expiresAt, token: session_token})
         
         res.cookie("session_token", session_token, {expires: expiresAt})
-        return res.status(200).json({user: user.username, expireTime})
+        return res.status(200).json({user: user.username, avatar: user.avatar, expireTime})
 
     }catch(err){
         return res.status(400).json({error: err.message})
@@ -65,7 +65,8 @@ async function userLogout(req, res, next){
 //new user sign up
 async function userSignup(req,res,next){
    try{
-        const user = await User.create({...req.body})
+        const avatar = req.file.filename
+        const user = await User.create({...req.body, avatar})
         return res.status(201).json(user)
    }catch(err){
         return res.status(400).json({error: err.message})

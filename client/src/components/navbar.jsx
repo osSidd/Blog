@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Text, useColorMode } from "@chakra-ui/react";
+import { Avatar, Box, Button, Heading, Text, useColorMode } from "@chakra-ui/react";
 import {AddIcon, SunIcon, MoonIcon} from '@chakra-ui/icons'
 
 import { Link, useNavigate } from "react-router-dom";
@@ -9,14 +9,14 @@ import useLogout from "../hooks/user/useLogout";
 export default function Navbar(){
     
     const {colorMode, toggleColorMode} = useColorMode()
-    const {user} = useUserContext()
+    const {user, avatar} = useUserContext()
     const {logout} = useLogout()
     const navigate = useNavigate()
 
     function handleNavigation(path){
         navigate(path)
     }
-
+    console.log(avatar)
     return (
         <Box px={14} w={{base:'90%', md:'100%'}} display='flex' alignItems='center' justifyContent='space-between'>
             <Link to='/'><Heading as='h1' size='2xl'>Os&apos; writings</Heading></Link>
@@ -37,6 +37,7 @@ export default function Navbar(){
             {
                 user ? 
                 <Box display='flex' alignItems='center'>
+                    <Avatar src={`${import.meta.env.VITE_URL}/images/${avatar}`} size='sm' mr={4}/>
                     <Text>{user}</Text>
                     <Button ml={8} variant='link' color='red.400' onClick={logout}>Logout</Button>
                 </Box> : 

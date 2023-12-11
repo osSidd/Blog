@@ -1,6 +1,6 @@
 import {useParams} from 'react-router-dom'
 
-import { Badge, Box, Button, Heading, Stack, Text, } from "@chakra-ui/react";
+import { Badge, Box, Button, Heading, Image, Stack, Text, } from "@chakra-ui/react";
 import {DeleteIcon, EditIcon} from '@chakra-ui/icons'
 
 import BackToBlogsBtn from '../components/backBtn';
@@ -18,7 +18,7 @@ export default function Blog(){
     const id = params.id
     
     const {blog, deleteBlog, editBlog} = useBlogFetch(id)
-    const {user} = useUserContext()
+    const {user, avatar} = useUserContext()
 
     return(
         <Box w={{base:'90%', md:'4xl'}} mx='auto'>
@@ -26,10 +26,14 @@ export default function Blog(){
             <BackToBlogsBtn/>
             
             <Box mt={12}>
-                <Heading as='h1' size='4xl'>{blog.title}</Heading>
+                <Image
+                    src={`${import.meta.env.VITE_URL}/images/blog/${blog.cover}`}
+                    w='100%'
+                />
+                <Heading mt={12} as='h1' size='4xl'>{blog.title}</Heading>
                 <Box display='flex' alignItems='center' mt={8} mb={4} fontSize={18}>
                     <Text mr={4}>Created on {formatDate(blog.createdAt)}</Text>
-                    <Text>By - Author&apos; s name</Text>
+                    <Text>By - {blog.author}</Text>
                 </Box>
                 <Stack direction='row'>
                     {
@@ -50,7 +54,7 @@ export default function Blog(){
                     </Box>
                 }
 
-                {blog.comments?.length ? <Comments blogId={id} comments={blog.comments}/> : <Text mt={12}>No comments</Text> }
+                {blog.comments?.length ? <Comments user={user} avatar={avatar} blogId={id} comments={blog.comments}/> : <Text mt={12}>No comments</Text> }
                 { user && <Box mt={8}><CommentForm id={id}/></Box>}
             </Box>
         </Box>

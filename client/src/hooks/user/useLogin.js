@@ -36,6 +36,7 @@ export default function useLogin(){
                     type: 'USER_LOG_IN',
                     payload: {
                         user: data.user,
+                        avatar: data.avatar,
                         expiresAt: data.expiresAt
                     }
                 })

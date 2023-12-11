@@ -2,14 +2,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema({
+    cover: {
+        type: String,
+        required: true,
+    },
     title:{
         type: String,
         required: true,
     },
-    // author:{
-    //     type: String,
-    //     required:true,
-    // },
+    author:{
+        type: String,
+        default: 'Osama',
+    },
     snippet:{
         type:String,
         required:true,

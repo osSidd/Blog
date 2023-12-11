@@ -6,6 +6,7 @@ export default function useSignup(){
     const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
+        avatar: '',
         name:'',
         email: '',
         password: '',
@@ -14,22 +15,28 @@ export default function useSignup(){
     })
 
     function handleChange(e){
-        const {name, value} = e.target
+        const {name, value, files} = e.target
         setFormData(prev => ({
             ...prev,
-            [name]: value,
+            [name]: name === 'avatar' ? files[0] : value,
         }))
     }
 
     async function signupUser(e){
         e.preventDefault()
+
+        const data = new FormData()
+        for(let key in formData){
+            data.append(key, formData[key])
+        }
+
         try{
             const response = await fetch(`${import.meta.env.VITE_URL}/users/signup`, {
                 method: 'POST',
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
+                // headers:{
+                //     'Content-Type': 'multipart/form-data',
+                // },
+                body: data,
             })
             if(response.ok){
                 const data = await  response.json()
@@ -37,7 +44,7 @@ export default function useSignup(){
                 navigate('/')
             }
         }catch(err){
-            console.log(err)
+            console.log(err.message)
         }
     }
 

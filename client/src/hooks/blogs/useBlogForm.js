@@ -10,6 +10,7 @@ export default function useBlogForm(id){
         title: '',
         snippet: '',
         tags: [],
+        cover: '',
     })
 
     const {state} = useBlogContext()
@@ -20,11 +21,11 @@ export default function useBlogForm(id){
     const navigate = useNavigate()
 
     function handleChange(e){
-        const {name, value} = e.target
+        const {name, value, files} = e.target
 
         setFormData(prev => ({
             ...prev,
-            [name] : value
+            [name] : name === 'cover' ? files[0] : value
         }))
     }
 
@@ -35,18 +36,26 @@ export default function useBlogForm(id){
         })
         setFormData(prev => ({...prev, tags: [...prev.tags, id]}))
     }
-
+    
     async function handleSubmit(e){
         e.preventDefault()
+        
+        const data = new FormData()
+        for(let key in formData){
+            data.append(key, formData[key])
+        }
+        data.append('body', messageRef.current.value)
+
         const url = id ? `${import.meta.env.VITE_URL}/api/blogs/${id}` : `${import.meta.env.VITE_URL}/api/blogs`
         try{
             const response = await fetch(url, {
                 credentials: "include",
-                headers:{
-                    "Content-Type": "application/json"
-                },
+                // headers:{
+                //     "Content-Type": "application/json"
+                // },
                 method: id ? 'PATCH' : 'POST',
-                body:JSON.stringify({...formData, body: messageRef.current.value})
+                // body:JSON.stringify({...formData, body: messageRef.current.value})
+                body: data,
             })
     
             if(response.ok){

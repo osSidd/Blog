@@ -33,8 +33,9 @@ const getABlog = async (req, res) => {
 //post a new blog
 const postNewBlog = async (req,res) => {
     try{
-        console.log(req.body)
-        const blog = new Blog({...req.body});
+        const tags = req.body.tags.split(',')
+        const cover = req.file.filename
+        const blog = new Blog({...req.body,tags, cover});
         const newBlog = await blog.save();
         return res.status(201).json(newBlog);
     }catch(err){

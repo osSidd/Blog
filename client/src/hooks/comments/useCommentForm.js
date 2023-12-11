@@ -5,7 +5,7 @@ import useBlogContext from "../blogs/useBlogContext";
 export default function useCommentForm(id){
     
     const commentRef = useRef()
-    const {user} = useUserContext()
+    const {user, avatar} = useUserContext()
     const {dispatch} = useBlogContext()
 
     async function addComment(e){
@@ -17,7 +17,7 @@ export default function useCommentForm(id){
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({body: commentRef.current.value, author: user, blog: id})
+                body: JSON.stringify({body: commentRef.current.value, author: user, avatar, blog: id})
             })
 
             if(response.ok){

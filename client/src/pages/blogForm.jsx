@@ -19,6 +19,16 @@ export default function BlogForm(){
             <form style={{marginTop:'32px'}} onSubmit={handleSubmit}>
                 <Heading as='h1' size='4xl'>Create a new blog</Heading>
                 <FormControl mt={12}>
+                    <FormLabel>Cover Image</FormLabel>
+                    <Input
+                        name="cover"
+                        onChange={handleChange}
+                        type="file"
+                        outline='none'
+                        border='none'
+                    />
+                </FormControl>
+                <FormControl mt={12}>
                     <FormLabel>Title</FormLabel>
                     <Input 
                         name="title"
@@ -44,7 +54,7 @@ export default function BlogForm(){
                     <FormLabel>Tags</FormLabel>
                     
                     {
-                        tags.map(tag => (<Button onClick={() => selectTags(tag._id)} colorScheme={tag.selected ? 'teal' : 'gray'} mr={2} key={tag._id}>{tag.name}</Button>))
+                        tags.map(tag => (<Button onClick={() => selectTags(tag._id)} colorScheme={tag.selected ? 'teal' : 'gray'} mr={2} my={2} key={tag._id}>{tag.name}</Button>))
                     }
                 </FormControl>
                 <Text my={6}><Link style={{fontWeight:700}} to='/tags/create'>click here</Link> to create, edit or delete a tag</Text>

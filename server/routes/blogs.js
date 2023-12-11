@@ -11,6 +11,9 @@ const {
 
 const auth = require('../middleware/auth')
 
+const fileUpload = require('../middleware/uploadFile')
+const upload = fileUpload('uploads/blogs/cover')
+
 //get all blogs
 router.get('/', getAllBlogs);
 
@@ -18,7 +21,7 @@ router.get('/', getAllBlogs);
 router.get('/:id', getABlog);
 
 //post a new blog
-router.post('/', auth, postNewBlog);
+router.post('/', auth, upload.single('cover'), postNewBlog);
 
 //patch a blog
 router.patch('/:id', auth, updateABlog);

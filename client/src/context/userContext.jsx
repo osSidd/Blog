@@ -13,11 +13,13 @@ function reducer(state, action){
             sessionStorage.setItem('user', action.payload.user)
             return {
                 user: action.payload.user,
+                avatar: action.payload.avatar,
             }
         case 'USER_LOG_OUT':
             sessionStorage.clear('user')
             return {
-                user: ''
+                user: '',
+                avatar: '',
             }
         default:
             return state
@@ -27,7 +29,8 @@ function reducer(state, action){
 export default function UserContextProvider({children}){
 
     const [state, dispatch] = useReducer(reducer, {
-        user: sessionStorage.getItem('user')
+        user: sessionStorage.getItem('user'),
+        avatar: '',
     })
 
     return (

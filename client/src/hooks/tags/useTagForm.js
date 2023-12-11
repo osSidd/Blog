@@ -29,6 +29,7 @@ export default function useTagForm(){
                 type:'ADD_TAG',
                 payload: data
             })
+            tagRef.current.value = ''
         }catch(err){
             console.log(err.message)
         }   

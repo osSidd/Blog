@@ -23,12 +23,12 @@ export default function Signup(){
                 
                 <Box alignSelf='flex-start'><BackToBlogsBtn/></Box>
                 
-                <form style={{width: '75%', color:'GrayText'}} onSubmit={signupUser}>
+                <form style={{width: '75%', color:'GrayText'}} onSubmit={signupUser} encType="multipart/form-data">
                 
                     <Heading textAlign='center' as='h2' fontSize='2xl'>Create your account</Heading>    
                     
                     <FormLabel mt={8} mb={2}>Profile image</FormLabel>
-                    <Input type="file" outline='none' border='none' pl={1}/>
+                    <Input type="file" name="avatar" outline='none' border='none' pl={1} onChange={handleChange}/>
 
                     <FormControlElement
                         label='Full Name'

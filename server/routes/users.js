@@ -8,7 +8,10 @@ const {
   userSignup,
   deleteUser,
   editUser
-} = require('../controllers/userController')
+} = require('../controllers/userController');
+
+const fileUpload = require('../middleware/uploadFile')
+const upload = fileUpload('uploads/users')
 
 //get all users
 router.get('/', getAllUsers);
@@ -24,8 +27,8 @@ router.post('/login', userLogin)
 
 //user log out
 router.get('/logout', userLogout)
-
+ 
 //for user signup
-router.post('/signup', userSignup)
+router.post('/signup', upload.single('avatar'), userSignup)
 
 module.exports = router;

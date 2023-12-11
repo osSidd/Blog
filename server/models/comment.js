@@ -6,6 +6,10 @@ const CommentSchema = new Schema({
         type: String,
         required: true,
     },
+    avatar:{
+        type:String,
+        required: true,
+    },
     body:{
         type:String,
         required:true,

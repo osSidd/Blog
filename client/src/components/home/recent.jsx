@@ -8,11 +8,11 @@ export default function Recent({blogs}){
             <Heading as='h2' fontSize='xl'>Recent posts</Heading>
             <Box mt={4}>
                 {
-                    blogs.slice(0,3).map(blog => (
+                    blogs.slice(0,3).map((blog, index, arr) => (
                         <Fragment key={blog._id}>
                             <Text>{blog.title}</Text>
                             <Text fontSize='small' color='GrayText'>{formatDate(blog.createdAt)}</Text> 
-                            <Divider my={2}/>
+                            {index < arr.length - 1 && <Divider my={2}/>}
                         </Fragment>
                     ))
                 }
