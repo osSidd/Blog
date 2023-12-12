@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 
+var helmet = require('helmet')
 var dotenv = require('dotenv')
 dotenv.config()
 var cookieParser = require('cookie-parser');
@@ -16,6 +17,7 @@ var commentRouter = require('./routes/comment')
 var subscriberRouter = require('./routes/subscriber')
 
 var app = express();
+app.use(helmet())
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));

@@ -1,5 +1,5 @@
 function getImageUrl(req, type){
-    const port = process.env.PORT
+    const port = process.env.PORT || 3000
     const base = `${req.protocol}://${req.hostname}:${port}/images`
     switch(type){
         case 'cover':
