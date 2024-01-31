@@ -17,13 +17,13 @@ var commentRouter = require('./routes/comment')
 var subscriberRouter = require('./routes/subscriber')
 
 var app = express();
-app.use(helmet())
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
 
 app.use(cors({origin: true, credentials: true}))
+// app.use(helmet())
 
 app.use(logger('dev'));
 app.use(express.json());

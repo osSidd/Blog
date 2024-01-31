@@ -1,4 +1,4 @@
-import {Box, Button, Checkbox, FormLabel, Heading, Input} from '@chakra-ui/react'
+import {Box, Button, Checkbox, Heading} from '@chakra-ui/react'
 import {Link} from 'react-router-dom'
 
 import FormControlElement from '../components/formControl'
@@ -13,7 +13,7 @@ export default function Login(){
     return(
         <Box>
             <Box 
-                w={{base: '90%', md:'4xl'}} 
+                w={{base: '100%', md:'4xl'}} 
                 mx='auto' 
                 display='flex' 
                 flexDir='column' 
@@ -41,8 +41,8 @@ export default function Login(){
                     value={formData.password}
                     handleChange={handleChange}
                 />
-                <Box mt={4} display='flex' justifyContent='space-between'>
-                    <Checkbox>Remember me</Checkbox>
+                <Box mt={4} display='flex' justifyContent='space-between' fontSize={{base:'xs', md:'md'}}>
+                    <Checkbox fontSize={{base:'xs', md:'md'}}>Remember me</Checkbox>
                     <Link style={{color: 'blue'}} to='/'>Forgot Password?</Link>
                 </Box>
                 <Button 

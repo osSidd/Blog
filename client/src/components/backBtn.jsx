@@ -16,8 +16,10 @@ export default function BackToBlogsBtn(){
             onClick={navigateTo} 
             textTransform='capitalize' 
             colorScheme='purple'
-            size='sm'
-            mt={16}
+            size={{base:'xs', md:'sm'}}
+            mt={{base:'10', md:'12'}}
+            mb={{base:'8', md:'0'}}
+            ml={{base:'12', md:'0'}}
         >
             blogs
         </Button>

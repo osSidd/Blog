@@ -1,4 +1,4 @@
-import { Box, Heading, Button, Text, Input, FormLabel } from "@chakra-ui/react";
+import { Box, Heading, Button, Input, FormLabel } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 import BackToBlogsBtn from "../components/backBtn";
@@ -13,7 +13,7 @@ export default function Signup(){
     return(
         <Box>
             <Box 
-                w={{base: '90%', md:'4xl'}} 
+                w={{base: '100%', md:'4xl'}} 
                 mx='auto' 
                 display='flex' 
                 flexDir='column' 

@@ -18,38 +18,40 @@ export default function Navbar(){
     }
     console.log(avatar)
     return (
-        <Box px={14} w={{base:'90%', md:'100%'}} display='flex' alignItems='center' justifyContent='space-between'>
-            <Link to='/'><Heading as='h1' size='2xl'>Os&apos; writings</Heading></Link>
-            { user && <Button 
-                colorScheme='gray'
-                fontSize={18}
-                ml='auto'
-                onClick={() =>  handleNavigation('/blogs/create')}
-                rightIcon={<AddIcon/>}
-            >
-                Compose post
-            </Button>}
-            <Button bg='transparent' outline='none' border='none' _hover={{bg:'transparent'}} ml='auto' mr={4} onClick={toggleColorMode}>
+        <Box px={{base:8, md:14}} w={{base:'90%', md:'100%'}} display='flex' flexDir={{base:'column', md:'row'}} alignItems='center' justifyContent='space-between'>
+            <Link to='/'><Heading as='h1' size={{base:'xl', md:'2xl'}}>Os&apos; writings</Heading></Link>
+            <Box display='flex' alignItems='center' mt={{base:'2', md:'0'}}>
+                { user && <Button 
+                    colorScheme='gray'
+                    fontSize={18}
+                    ml='auto'
+                    onClick={() =>  handleNavigation('/blogs/create')}
+                    rightIcon={<AddIcon/>}
+                >
+                    Compose post
+                </Button>}
+                <Button bg='transparent' outline='none' border='none' _hover={{bg:'transparent'}} ml='auto' mr={4} onClick={toggleColorMode}>
+                    {
+                        colorMode === 'light' ? <SunIcon/> : <MoonIcon/>
+                    }
+                </Button>
                 {
-                    colorMode === 'light' ? <SunIcon/> : <MoonIcon/>
+                    user ? 
+                    <Box display='flex' alignItems='center'>
+                        <Avatar src={avatar} size='sm' mr={4}/>
+                        <Text>{user}</Text>
+                        <Button ml={8} variant='link' color='red.400' onClick={logout}>Logout</Button>
+                    </Box> : 
+                    <Box>
+                        <Button mr={4} variant='link' colorScheme='blue' onClick={() => handleNavigation('/users/signup')}>
+                            create account
+                        </Button>
+                        <Button variant='link' colorScheme='blue' onClick={() => handleNavigation('/users/login')}>
+                            log in
+                        </Button>
+                    </Box>
                 }
-            </Button>
-            {
-                user ? 
-                <Box display='flex' alignItems='center'>
-                    <Avatar src={avatar} size='sm' mr={4}/>
-                    <Text>{user}</Text>
-                    <Button ml={8} variant='link' color='red.400' onClick={logout}>Logout</Button>
-                </Box> : 
-                <Box>
-                    <Button mr={4} variant='link' colorScheme='blue' onClick={() => handleNavigation('/users/signup')}>
-                        create account
-                    </Button>
-                    <Button variant='link' colorScheme='blue' onClick={() => handleNavigation('/users/login')}>
-                        log in
-                    </Button>
-                </Box>
-            }
+            </Box>
         </Box>
     )
 }
