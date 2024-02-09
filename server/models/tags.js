@@ -5,6 +5,10 @@ const tagSchema = new Schema({
     name: {
         type: String,
         required: true,
+        minLength: 3,
+        validate: {
+            validator: v => /^[A-Za-z\s]+$/.test(v)
+        }
     }
 })
 

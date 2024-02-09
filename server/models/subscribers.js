@@ -5,8 +5,9 @@ const SubscriberSchema = new Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
         validator: {
-            validate: v => typeof(v) === 'string' && v.length !== 0
+            validator: v => /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/.test(v)
         }
     }
 })
