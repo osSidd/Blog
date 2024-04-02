@@ -16,8 +16,17 @@ const Signup = lazy(() => import('./pages/signup'))
 const Login = lazy(() => import('./pages/login'))
 const ErrorPage = lazy(() => import('./error/errorPage'))
 
+import store from './store/store'
 
 export default function App(){
+
+  const unsubscribe = store.subscribe(() => {
+    console.log('state after dispatch', store.getState())
+  })
+
+  store.dispatch({type: 'tags/ADD_TAG', payload:'New Tag'})
+  unsubscribe()
+
   return(
     <Box maxW='100vw' minH='100vh' py={12}>
       <BrowserRouter>

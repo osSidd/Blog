@@ -3,9 +3,7 @@ const initialState = []
 export default function tagReducer(state=initialState, action){
     switch(action.type){
         case 'tags/ADD_TAG':
-            return {
-                tags: [...state.tags, action.payload]
-            }
+            return [...state, action.payload]
         case 'tags/SET_ALL_TAGS':
             return {
                 tags: action.payload.map(tag => ({...tag, edit: false, selected: false}))

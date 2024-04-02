@@ -9,7 +9,7 @@ import UserContextProvider from './context/userContext.jsx'
 import TagContextProvider from './context/tagContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <UserContextProvider>
       <TagContextProvider>
         <BlogContextProvider>
@@ -19,5 +19,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </BlogContextProvider>
       </TagContextProvider>
     </UserContextProvider>
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )

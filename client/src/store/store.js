@@ -1,6 +1,10 @@
-import {createStore} from 'redux'
+import {applyMiddleware, createStore} from 'redux'
 import rootReducer from '../reducer/rootReducer'
+import example from '../middleware/example'
+import example2 from '../middleware/example2'
 
-const store = createStore(rootReducer)
+const middleware = applyMiddleware(example, example2)
+
+const store = createStore(rootReducer, middleware)
 
 export default store
