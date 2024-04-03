@@ -7,9 +7,12 @@ import {ChakraProvider} from '@chakra-ui/react'
 import BlogContextProvider from './context/blogContext.jsx'
 import UserContextProvider from './context/userContext.jsx'
 import TagContextProvider from './context/tagContext.jsx'
+import { Provider } from 'react-redux'
+import store from './store/store.js'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
+  <Provider store={store}>
     <UserContextProvider>
       <TagContextProvider>
         <BlogContextProvider>
@@ -19,5 +22,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </BlogContextProvider>
       </TagContextProvider>
     </UserContextProvider>
+  </Provider>
   // </React.StrictMode>,
 )

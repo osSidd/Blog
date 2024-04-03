@@ -5,6 +5,7 @@ import { Box, Button, FormControl, FormLabel, Heading, Input, Text, Textarea } f
 import BackToBlogsBtn from "../components/backBtn";
 
 import useBlogForm from "../hooks/blogs/useBlogForm";
+import { useDispatch } from "react-redux";
 
 export default function BlogForm(){
 
@@ -12,11 +13,12 @@ export default function BlogForm(){
     const id = params.id
 
     const {formData, messageRef, tags, handleChange, handleSubmit, selectTags} = useBlogForm(id)
-
+    const dispatch = useDispatch()
     return (
         <Box w={{base:'90%', md:'4xl'}} mx='auto'>
             <BackToBlogsBtn/>
-            <form style={{marginTop:'32px'}} onSubmit={handleSubmit}>
+            {/* <form style={{marginTop:'32px'}} onSubmit={handleSubmit}> */}
+            <form style={{marginTop:'32px'}} onSubmit={dispatch({type: 'blogs/ADD_BLOG', payload: ''})}>
                 <Heading as='h1' size='4xl'>Create a new blog</Heading>
                 <FormControl mt={12}>
                     <FormLabel>Cover Image</FormLabel>
