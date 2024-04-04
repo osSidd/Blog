@@ -12,7 +12,7 @@ import Social from "../components/home/social";
 // import useTagsFetch from '../hooks/tags/useTagsFetch'
 
 export default function Home(){
-
+    console.log('hi')
     // const {blogs} = useBlogsFetch()  
     // const {tags} = useTagsFetch()
     const blogs = useSelector(state => state.blogs, shallowEqual)

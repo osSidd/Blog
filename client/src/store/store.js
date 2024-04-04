@@ -1,10 +1,15 @@
 import {applyMiddleware, createStore} from 'redux'
 import rootReducer from '../reducer/rootReducer'
-import example from '../middleware/example'
-import example2 from '../middleware/example2'
+// import {thunkMiddleware} from 'redux-thunk'
 
-// const middleware = applyMiddleware(example, example2)
+const thunkMiddleware = storeApi => next => action => {
+    if(typeof action === 'function')
+        return action(storeApi.dispatch, storeApi.getState)
+    return next(action)
+}
 
-const store = createStore(rootReducer)
+const composedEnhancer = applyMiddleware(thunkMiddleware)
+
+const store = createStore(rootReducer, composedEnhancer)
 
 export default store

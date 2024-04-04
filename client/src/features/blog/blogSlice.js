@@ -29,3 +29,57 @@ export default function blogReducer(state=initialState, action){
             return state
     }
 }
+
+export async function loadBlogs(dispatch, getState){
+    try{
+        // const response = await fetch(`${import.meta.env.VITE_URL}/api/blogs`, {signal})
+        const response = await fetch(`${import.meta.env.VITE_URL}/api/blogs`)
+
+        // if(!signal.aborted){
+            if(response.ok){
+                const data = await response.json()
+                // console.log(data)
+                dispatch({
+                    type: 'blogs/SET_ALL_BLOGS',
+                    payload: data
+                })
+            }
+        // }
+        else{
+            console.error(`Http error! Status:${response.status}`)
+        }                
+    }catch(err){
+        // if(!signal.aborted){
+            console.log(err.message)
+        // }
+    }
+}
+
+export function fetchBlog(id){
+    return async function (dispatch, getState){
+        try{
+            // const response = await fetch(`${import.meta.env.VITE_URL}/api/blogs`, {signal})
+            const response = await fetch(`${import.meta.env.VITE_URL}/api/blogs/${id}`)
+
+            // if(!signal.aborted){
+                if(response.ok){
+                    const data = await response.json()
+                    // console.log(data)
+                    dispatch({
+                        type: 'blogs/SET_A_BLOG',
+                        payload: data
+                    })
+                    // console.log(getState())
+                    console.log('hi')
+                }
+            // }
+            else{
+                console.error(`Http error! Status:${response.status}`)
+            }                
+        }catch(err){
+            // if(!signal.aborted){
+                console.log(err.message)
+            // }
+        }
+    }
+}

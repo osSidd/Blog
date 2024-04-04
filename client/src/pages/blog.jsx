@@ -1,4 +1,5 @@
 import {useParams} from 'react-router-dom'
+import {shallowEqual, useSelector} from 'react-redux'
 
 import { Badge, Box, Button, Heading, Image, Stack, Text, } from "@chakra-ui/react";
 import {DeleteIcon, EditIcon} from '@chakra-ui/icons'
@@ -11,13 +12,20 @@ import useUserContext from '../hooks/user/useUserContext'
 import formatDate from '../utils/formatDate';
 import Comments from '../components/singleBlog/comments';
 import CommentForm from '../components/singleBlog/commentForm';
+import store from '../store/store';
+import { fetchBlog } from '../features/blog/blogSlice';
 
 export default function Blog(){
 
     const params = useParams()
     const id = params.id
     
-    const {blog, deleteBlog, editBlog} = useBlogFetch(id)
+    store.dispatch(fetchBlog(id))
+
+    // const {blog, deleteBlog, editBlog} = useBlogFetch(id)
+    // const blog = useSelector(store => store.blogs.blog, shallowEqual)
+    const deleteBlog = () => {}
+    const editBlog = () => {}
     const {user, avatar} = useUserContext()
 
     return(
