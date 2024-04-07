@@ -12,7 +12,7 @@ import store from './store/store.js'
 import { loadBlogs } from './features/blog/blogSlice.js'
 
 //initially load all blogs from the server
-store.dispatch(loadBlogs)
+store.dispatch(loadBlogs())
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>

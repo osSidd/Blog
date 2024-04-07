@@ -30,7 +30,13 @@ export default function blogReducer(state=initialState, action){
     }
 }
 
-export async function loadBlogs(dispatch, getState){
+export const setBlogs = blogs => ({
+    type: 'blogs/SET_ALL_BLOGS',
+    payload: blogs,
+})
+
+export function loadBlogs(){
+    return async function(dispatch){
     try{
         // const response = await fetch(`${import.meta.env.VITE_URL}/api/blogs`, {signal})
         const response = await fetch(`${import.meta.env.VITE_URL}/api/blogs`)
@@ -39,10 +45,7 @@ export async function loadBlogs(dispatch, getState){
             if(response.ok){
                 const data = await response.json()
                 // console.log(data)
-                dispatch({
-                    type: 'blogs/SET_ALL_BLOGS',
-                    payload: data
-                })
+                dispatch(setBlogs(data))
             }
         // }
         else{
@@ -54,9 +57,10 @@ export async function loadBlogs(dispatch, getState){
         // }
     }
 }
+}
 
 export function fetchBlog(id){
-    return async function (dispatch, getState){
+    return async function (dispatch){
         try{
             // const response = await fetch(`${import.meta.env.VITE_URL}/api/blogs`, {signal})
             const response = await fetch(`${import.meta.env.VITE_URL}/api/blogs/${id}`)
