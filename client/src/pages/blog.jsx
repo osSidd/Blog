@@ -15,15 +15,13 @@ import CommentForm from '../components/singleBlog/commentForm';
 import store from '../store/store';
 import { fetchBlog } from '../features/blog/blogSlice';
 
-export default function Blog(){
+export default function Blog({blog}){
 
     const params = useParams()
     const id = params.id
     
-    store.dispatch(fetchBlog(id))
 
     // const {blog, deleteBlog, editBlog} = useBlogFetch(id)
-    // const blog = useSelector(store => store.blogs.blog, shallowEqual)
     const deleteBlog = () => {}
     const editBlog = () => {}
     const {user, avatar} = useUserContext()

@@ -3,6 +3,8 @@ import { Suspense, lazy } from "react"
 
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
+import {useSelector, shallowEqual} from 'react-redux'
+
 import './App.css'
 import ErrorBoundary from "./error/errorBoundary"
 import Navbar from "./components/navbar"
@@ -18,6 +20,9 @@ const ErrorPage = lazy(() => import('./error/errorPage'))
 
 export default function App(){
 
+  const blog = useSelector(store => store.blogs.blog, shallowEqual)
+
+
   return(
     <Box maxW='100vw' minH='100vh' py={12}>
       <BrowserRouter>
@@ -26,7 +31,7 @@ export default function App(){
           <Suspense fallback={<div>Loading ...</div>}>
             <Routes>
               <Route path="/" element={<Home/>} />
-              <Route path="/blogs/:id" element={<Blog/>}/>
+              <Route path="/blogs/:id" element={<Blog blog={blog}/>}/>
               <Route path="/blogs/:id/edit" element={<BlogForm/>}/>
               <Route path="/blogs/create" element={<BlogForm/>}/>
               <Route path="/tags/create" element={<TagForm/>}/>

@@ -1,39 +1,58 @@
+import {createSlice} from '@reduxjs/toolkit'
+
 const initialState = {
     blogs: [],
     blog: {}
 }
 
-export default function blogReducer(state=initialState, action){
-    switch(action.type){
-        case 'blogs/SET_ALL_BLOGS':
+const blogSlice = createSlice({
+    name: 'blogs',
+    initialState,
+    reducers: {
+        setAllBlogs(state, action){
             return {
                 ...state,
-                blogs: action.payload,
+                blogs: action.payload
             }
-        case 'blogs/SET_A_BLOG':
+        },
+        setABlog(state, action){
             return {
                 ...state,
-                blog: action.payload,
+                blog: action.payload
             }
-        case 'blogs/ADD_COMMENT':
-            return {
-                ...state,
-                blog: {...state.blog, comments: [...state.blog.comments, action.payload]}
-            }
-        case 'blogs/DELETE_COMMENT':
-            return {
-                ...state,
-                blog: {...state.blog, comments: state.blog.comments.filter(cmt => cmt._id !== action.payload)}
-            }
-        default:
-            return state
+        }
     }
-}
-
-export const setBlogs = blogs => ({
-    type: 'blogs/SET_ALL_BLOGS',
-    payload: blogs,
 })
+
+export const {setAllBlogs, setABlog} = blogSlice.actions
+export default blogSlice.reducer
+
+// export default function blogReducer(state=initialState, action){
+//     switch(action.type){
+//         case 'blogs/SET_ALL_BLOGS':
+//             return {
+//                 ...state,
+//                 blogs: action.payload,
+//             }
+//         case 'blogs/SET_A_BLOG':
+//             return {
+//                 ...state,
+//                 blog: action.payload,
+//             }
+//         case 'blogs/ADD_COMMENT':
+//             return {
+//                 ...state,
+//                 blog: {...state.blog, comments: [...state.blog.comments, action.payload]}
+//             }
+//         case 'blogs/DELETE_COMMENT':
+//             return {
+//                 ...state,
+//                 blog: {...state.blog, comments: state.blog.comments.filter(cmt => cmt._id !== action.payload)}
+//             }
+//         default:
+//             return state
+//     }
+// }
 
 export function loadBlogs(){
     return async function(dispatch){
@@ -45,7 +64,7 @@ export function loadBlogs(){
             if(response.ok){
                 const data = await response.json()
                 // console.log(data)
-                dispatch(setBlogs(data))
+                dispatch(setAllBlogs(data))
             }
         // }
         else{
@@ -69,10 +88,7 @@ export function fetchBlog(id){
                 if(response.ok){
                     const data = await response.json()
                     // console.log(data)
-                    dispatch({
-                        type: 'blogs/SET_A_BLOG',
-                        payload: data
-                    })
+                    dispatch(setABlog(data))
                     // console.log(getState())
                     console.log('hi')
                 }

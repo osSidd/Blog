@@ -5,11 +5,15 @@ import { useNavigate } from 'react-router-dom'
 
 import formatDate from '../../../utils/formatDate'
 
+import store from '../../../store/store'
+import { fetchBlog } from '../../../features/blog/blogSlice'
+
 export default function BlogCard({blog}){
 
     const navigate = useNavigate()
 
     function navigateToBlog(){
+        store.dispatch(fetchBlog(blog._id))
         navigate(`/blogs/${blog._id}`)
     }
     
