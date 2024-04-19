@@ -1,4 +1,4 @@
-import {Button, Card, CardHeader, CardBody, CardFooter, Heading, Box, Image, Stack, Text, Avatar, ButtonGroup, Badge} from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, Heading, Box, Image, Stack, Text, Avatar, Badge} from '@chakra-ui/react'
 import {TimeIcon, ChatIcon} from '@chakra-ui/icons'
 
 import { useNavigate } from 'react-router-dom'

@@ -22,7 +22,6 @@ export default function App(){
 
   const blog = useSelector(store => store.blogs.blog, shallowEqual)
 
-
   return(
     <Box maxW='100vw' minH='100vh' py={12}>
       <BrowserRouter>

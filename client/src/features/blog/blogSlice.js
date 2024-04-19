@@ -63,7 +63,6 @@ export function loadBlogs(){
         // if(!signal.aborted){
             if(response.ok){
                 const data = await response.json()
-                // console.log(data)
                 dispatch(setAllBlogs(data))
             }
         // }
@@ -87,10 +86,7 @@ export function fetchBlog(id){
             // if(!signal.aborted){
                 if(response.ok){
                     const data = await response.json()
-                    // console.log(data)
                     dispatch(setABlog(data))
-                    // console.log(getState())
-                    console.log('hi')
                 }
             // }
             else{

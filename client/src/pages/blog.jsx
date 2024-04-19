@@ -1,19 +1,15 @@
 import {useParams} from 'react-router-dom'
-import {shallowEqual, useSelector} from 'react-redux'
 
-import { Badge, Box, Button, Heading, Image, Stack, Text, } from "@chakra-ui/react";
+import { Badge, Box, Heading, Image, Stack, Text, } from "@chakra-ui/react";
 import {DeleteIcon, EditIcon} from '@chakra-ui/icons'
 
 import BackToBlogsBtn from '../components/backBtn';
 
-import useBlogFetch from '../hooks/blogs/useBlogFetch'
 import useUserContext from '../hooks/user/useUserContext'
 
 import formatDate from '../utils/formatDate';
 import Comments from '../components/singleBlog/comments';
 import CommentForm from '../components/singleBlog/commentForm';
-import store from '../store/store';
-import { fetchBlog } from '../features/blog/blogSlice';
 
 export default function Blog({blog}){
 
